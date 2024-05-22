@@ -16,14 +16,11 @@ const createUser = async (payload: User) => {
         where: {
             email: payload.email
         }
-
     })
 
     if (isUserExits) {
         throw new ApiError(httpStatus.BAD_REQUEST, "User alrady registered, Please Login")
     }
-
-
 
     const hashedPassword = await bcrypt.hash(payload.password, 12);
     const userData = {
@@ -31,7 +28,8 @@ const createUser = async (payload: User) => {
         email: payload.email.trim(),
         password: hashedPassword,
     }
-    const result = await prisma.user.create({
+    console.log({userData});
+    const result =  prisma.user.create({
         data: userData,
         select: {
             id: true,
@@ -44,7 +42,6 @@ const createUser = async (payload: User) => {
 
     return result
 }
-
 
 
 
