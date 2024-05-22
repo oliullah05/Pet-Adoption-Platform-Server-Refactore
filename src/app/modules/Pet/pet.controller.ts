@@ -8,12 +8,23 @@ import { petFilterableFields, petUpdateableFields } from "./pet.const";
 
 const createPet = catchAsync(async (req, res) => {
     const file = req.file
-    // console.log({file},77);
     const petData = req.body;
     const result = await PetServices.createPet(petData, file);
     sendResponse(res, {
         success: true,
         message: "Pet added successfully",
+        statusCode: httpStatus.CREATED,
+        data: result
+    })
+
+})
+
+const uploadMultiplePhotos = catchAsync(async (req, res) => {
+    const files = req.files
+    const result = await PetServices.uploadMultiplePhotos(files);
+    sendResponse(res, {
+        success: true,
+        message: "Multiple Photo Uploaded Successfully",
         statusCode: httpStatus.CREATED,
         data: result
     })
@@ -54,5 +65,6 @@ const updateSinglePet = catchAsync(async (req, res) => {
 export const PetControllers = {
     getAllPets,
     createPet,
-    updateSinglePet
+    updateSinglePet,
+    uploadMultiplePhotos
 }

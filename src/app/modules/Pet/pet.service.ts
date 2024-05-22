@@ -5,26 +5,49 @@ import { IPaginationOptions } from "../../interface/pagination";
 import prisma from "../../shared/prisma";
 import { petSearchableFields } from "./pet.const";
 import { sendImageToCloudinary } from "../../helpers/fileUploader";
+import ApiError from "../../errors/ApiError";
 
 
 
 
-const createPet = async (payload: Pet,file:any) => {
-    // console.log(file);
+const createPet = async (payload: Pet, file: any) => {
     if (file) {
         const path = file?.path
-        const imageName = `${Math.random().toFixed(3).toString()} ${payload?.name}`
+        const imageName = `${Date.now().toString()} ${payload?.name}`
         //send image to cloudinary
         const { secure_url } = await sendImageToCloudinary(imageName, path)
         payload.bannerPhoto = secure_url as string
-        console.log({payload});
-      }
+        console.log({ payload });
+    }
     const result = await prisma.pet.create({
         data: payload,
     })
-
+    
     return result
 }
+
+
+const uploadMultiplePhotos = async (files:any) => {
+    if (!files || files.length <= 0) {
+        throw new ApiError(404, "Multiple photos/files not found");
+    }
+console.log(files);
+    const multiplePhotos:string[] = [];
+
+    // Using for...of loop to ensure await works properly
+    for (const file of files) {
+        const path = file?.path;
+        const imageName = `${Date.now().toString()} ${file.originalname} + ${Math.round(Math.random() * 1e9)}`;
+        
+        // send image to cloudinary
+        const { secure_url } = await sendImageToCloudinary(imageName, path);
+        
+        multiplePhotos.push(secure_url as string);
+    }
+
+    return multiplePhotos;
+};
+
 
 
 
@@ -120,6 +143,7 @@ const updateSinglePet = async (id: string, data: Partial<Pet>) => {
 export const PetServices = {
     getAllPet,
     createPet,
-    updateSinglePet
+    updateSinglePet,
+    uploadMultiplePhotos
 
 }

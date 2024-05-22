@@ -22,8 +22,8 @@ const createPet = z.object({
   body: z.object({
     name: z.string({ required_error: "Name is required" }),
     species: z.string({ required_error: "Species is required" }),
-    bannerPhoto: z.string({ required_error: "Banner Photo is required" }),
-    multiplePhotos: z.array(z.string({ required_error: "Photo URL is required" }), { required_error: "Multiple Photos are required" }),
+    bannerPhoto: z.string({ required_error: "Banner Photo is required" }).optional(),
+    multiplePhotos: z.array(z.string({ required_error: "Photo URL is required" }), { required_error: "Multiple Photos are required" }).optional(),
     breed: z.string({ required_error: "Breed is required" }),
     age: z.number({ required_error: "Age is required" }).int(),
     specialNeeds: z.string({ required_error: "Special Needs is required" }),
