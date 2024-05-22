@@ -1,16 +1,16 @@
-import { Pet, Prisma } from "@prisma/client";
-import prisma from "../../shared/prisma";
-import { IPaginationOptions } from "../../interface/pagination";
+import { Prisma } from "@prisma/client";
+import { Pet } from "../../../../prisma/generated/client";
 import { paginationHelper } from "../../helpers/paginationHelpers";
+import { IPaginationOptions } from "../../interface/pagination";
+import prisma from "../../shared/prisma";
 import { petSearchableFields } from "./pet.const";
 
 
 
 
-
-const createPet = async(payload:Pet)=>{
+const createPet = async (payload: Pet) => {
     const result = await prisma.pet.create({
-        data:payload,
+        data: payload,
     })
 
     return result
@@ -20,19 +20,19 @@ const createPet = async(payload:Pet)=>{
 
 
 
-const getAllPet = async (params:any, options:IPaginationOptions) => {
-
+const getAllPet = async (params: any, options: IPaginationOptions, query: Record<string, string>) => {
+    console.log({ query });
     const { searchTerm, ...filterData } = params;
- 
+
     const { limit, page, sortBy, sortOrder, skip } = paginationHelper.calculatePagination(options)
-    const andConditions: Prisma.PetWhereInput[]  = [];
+    const andConditions: Prisma.PetWhereInput[] = [];
 
 
     if (searchTerm) {
         andConditions.push({
             OR: petSearchableFields.map(field => ({
                 [field]: {
-                    contains:searchTerm,
+                    contains: searchTerm,
                     mode: "insensitive"
                 }
             }))
@@ -40,22 +40,38 @@ const getAllPet = async (params:any, options:IPaginationOptions) => {
     }
 
 
+
+    if (query?.age) {
+        andConditions.push({
+            age: {
+                equals: parseInt(query?.age)
+            }
+        });
+    }
+
+
+    console.dir({ andConditions }, { depth: "infinity" });
+
+
     if (Object.keys(filterData).length > 0) {
         andConditions.push({
             AND: Object.keys(filterData).map(key => ({
                 [key]: {
-                    equals: (filterData as any)[key]
+                    equals: (filterData as any)[key],
+
                 }
-            }))
+            })
+
+            )
         })
     }
 
-
+    console.log({ filterData });
 
     const whereConditions: Prisma.PetWhereInput = { AND: andConditions }
     // console.dir(andConditions,{depth:"infinity"});
     const result = await prisma.pet.findMany({
-        where: whereConditions ,
+        where: whereConditions,
         skip,
         take: limit,
         orderBy: sortBy && sortOrder ? {
@@ -72,29 +88,28 @@ const getAllPet = async (params:any, options:IPaginationOptions) => {
         meta: {
             page,
             limit,
-            total,
-            showData:result.length
+            total
 
         },
         data: result
     }
 }
 
-const updateSinglePet = async(id:string,data:Partial<Pet>)=>{
+const updateSinglePet = async (id: string, data: Partial<Pet>) => {
 
     await prisma.pet.findUniqueOrThrow({
-        where:{
+        where: {
             id
         }
     })
 
-const result = await prisma.pet.update({
-    where:{
-        id
-    },
-    data:data
-})
-return result
+    const result = await prisma.pet.update({
+        where: {
+            id
+        },
+        data: data
+    })
+    return result
 }
 
 

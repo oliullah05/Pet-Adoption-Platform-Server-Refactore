@@ -28,8 +28,8 @@ const createUser = async (payload: User) => {
         email: payload.email.trim(),
         password: hashedPassword,
     }
-    console.log({userData});
-    const result =  prisma.user.create({
+
+    const result = await prisma.user.create({
         data: userData,
         select: {
             id: true,

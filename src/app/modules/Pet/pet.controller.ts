@@ -23,8 +23,8 @@ const createPet = catchAsync(async (req, res) => {
 const getAllPets = catchAsync(async (req, res) => {
 
     const filters = pick(req.query, petFilterableFields);
-    const options = pick(req.query, ['page', "limit", "sortBy", "sortOrder"]);
-    const result = await PetServices.getAllPet(filters, options);
+    const options = pick(req.query, ['page', "limit", "sortBy", "sortOrder","age"]);
+    const result = await PetServices.getAllPet(filters, options,req.query as Record<string, string>);
     sendResponse(res, {
         success: true,
         message: "Pets retrieved successfully",

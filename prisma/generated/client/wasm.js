@@ -133,10 +133,15 @@ exports.Prisma.PetScalarFieldEnum = {
   id: 'id',
   name: 'name',
   species: 'species',
+  bannerPhoto: 'bannerPhoto',
+  multiplePhotos: 'multiplePhotos',
   breed: 'breed',
   age: 'age',
+  specialNeeds: 'specialNeeds',
   size: 'size',
+  gender: 'gender',
   location: 'location',
+  healthStatus: 'healthStatus',
   description: 'description',
   temperament: 'temperament',
   medicalHistory: 'medicalHistory',
@@ -173,6 +178,12 @@ exports.petSize = exports.$Enums.petSize = {
   small: 'small',
   medium: 'medium',
   large: 'large'
+};
+
+exports.Gender = exports.$Enums.Gender = {
+  male: 'male',
+  female: 'female',
+  other: 'other'
 };
 
 exports.adoptionRequestStatus = exports.$Enums.adoptionRequestStatus = {

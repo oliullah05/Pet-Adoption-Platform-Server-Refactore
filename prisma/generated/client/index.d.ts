@@ -50,6 +50,15 @@ export const petSize: {
 export type petSize = (typeof petSize)[keyof typeof petSize]
 
 
+export const Gender: {
+  male: 'male',
+  female: 'female',
+  other: 'other'
+};
+
+export type Gender = (typeof Gender)[keyof typeof Gender]
+
+
 export const adoptionRequestStatus: {
   PENDING: 'PENDING',
   APPROVED: 'APPROVED',
@@ -67,6 +76,10 @@ export const Role: typeof $Enums.Role
 export type petSize = $Enums.petSize
 
 export const petSize: typeof $Enums.petSize
+
+export type Gender = $Enums.Gender
+
+export const Gender: typeof $Enums.Gender
 
 export type adoptionRequestStatus = $Enums.adoptionRequestStatus
 
@@ -2127,10 +2140,14 @@ export namespace Prisma {
     id: string | null
     name: string | null
     species: string | null
+    bannerPhoto: string | null
     breed: string | null
     age: number | null
+    specialNeeds: string | null
     size: $Enums.petSize | null
+    gender: $Enums.Gender | null
     location: string | null
+    healthStatus: string | null
     description: string | null
     temperament: string | null
     medicalHistory: string | null
@@ -2143,10 +2160,14 @@ export namespace Prisma {
     id: string | null
     name: string | null
     species: string | null
+    bannerPhoto: string | null
     breed: string | null
     age: number | null
+    specialNeeds: string | null
     size: $Enums.petSize | null
+    gender: $Enums.Gender | null
     location: string | null
+    healthStatus: string | null
     description: string | null
     temperament: string | null
     medicalHistory: string | null
@@ -2159,10 +2180,15 @@ export namespace Prisma {
     id: number
     name: number
     species: number
+    bannerPhoto: number
+    multiplePhotos: number
     breed: number
     age: number
+    specialNeeds: number
     size: number
+    gender: number
     location: number
+    healthStatus: number
     description: number
     temperament: number
     medicalHistory: number
@@ -2185,10 +2211,14 @@ export namespace Prisma {
     id?: true
     name?: true
     species?: true
+    bannerPhoto?: true
     breed?: true
     age?: true
+    specialNeeds?: true
     size?: true
+    gender?: true
     location?: true
+    healthStatus?: true
     description?: true
     temperament?: true
     medicalHistory?: true
@@ -2201,10 +2231,14 @@ export namespace Prisma {
     id?: true
     name?: true
     species?: true
+    bannerPhoto?: true
     breed?: true
     age?: true
+    specialNeeds?: true
     size?: true
+    gender?: true
     location?: true
+    healthStatus?: true
     description?: true
     temperament?: true
     medicalHistory?: true
@@ -2217,10 +2251,15 @@ export namespace Prisma {
     id?: true
     name?: true
     species?: true
+    bannerPhoto?: true
+    multiplePhotos?: true
     breed?: true
     age?: true
+    specialNeeds?: true
     size?: true
+    gender?: true
     location?: true
+    healthStatus?: true
     description?: true
     temperament?: true
     medicalHistory?: true
@@ -2320,10 +2359,15 @@ export namespace Prisma {
     id: string
     name: string
     species: string
+    bannerPhoto: string
+    multiplePhotos: string[]
     breed: string
     age: number
+    specialNeeds: string
     size: $Enums.petSize
+    gender: $Enums.Gender
     location: string
+    healthStatus: string
     description: string
     temperament: string
     medicalHistory: string
@@ -2355,10 +2399,15 @@ export namespace Prisma {
     id?: boolean
     name?: boolean
     species?: boolean
+    bannerPhoto?: boolean
+    multiplePhotos?: boolean
     breed?: boolean
     age?: boolean
+    specialNeeds?: boolean
     size?: boolean
+    gender?: boolean
     location?: boolean
+    healthStatus?: boolean
     description?: boolean
     temperament?: boolean
     medicalHistory?: boolean
@@ -2373,10 +2422,15 @@ export namespace Prisma {
     id?: boolean
     name?: boolean
     species?: boolean
+    bannerPhoto?: boolean
+    multiplePhotos?: boolean
     breed?: boolean
     age?: boolean
+    specialNeeds?: boolean
     size?: boolean
+    gender?: boolean
     location?: boolean
+    healthStatus?: boolean
     description?: boolean
     temperament?: boolean
     medicalHistory?: boolean
@@ -2400,10 +2454,15 @@ export namespace Prisma {
       id: string
       name: string
       species: string
+      bannerPhoto: string
+      multiplePhotos: string[]
       breed: string
       age: number
+      specialNeeds: string
       size: $Enums.petSize
+      gender: $Enums.Gender
       location: string
+      healthStatus: string
       description: string
       temperament: string
       medicalHistory: string
@@ -2808,10 +2867,15 @@ export namespace Prisma {
     readonly id: FieldRef<"Pet", 'String'>
     readonly name: FieldRef<"Pet", 'String'>
     readonly species: FieldRef<"Pet", 'String'>
+    readonly bannerPhoto: FieldRef<"Pet", 'String'>
+    readonly multiplePhotos: FieldRef<"Pet", 'String[]'>
     readonly breed: FieldRef<"Pet", 'String'>
     readonly age: FieldRef<"Pet", 'Int'>
+    readonly specialNeeds: FieldRef<"Pet", 'String'>
     readonly size: FieldRef<"Pet", 'petSize'>
+    readonly gender: FieldRef<"Pet", 'Gender'>
     readonly location: FieldRef<"Pet", 'String'>
+    readonly healthStatus: FieldRef<"Pet", 'String'>
     readonly description: FieldRef<"Pet", 'String'>
     readonly temperament: FieldRef<"Pet", 'String'>
     readonly medicalHistory: FieldRef<"Pet", 'String'>
@@ -4142,10 +4206,15 @@ export namespace Prisma {
     id: 'id',
     name: 'name',
     species: 'species',
+    bannerPhoto: 'bannerPhoto',
+    multiplePhotos: 'multiplePhotos',
     breed: 'breed',
     age: 'age',
+    specialNeeds: 'specialNeeds',
     size: 'size',
+    gender: 'gender',
     location: 'location',
+    healthStatus: 'healthStatus',
     description: 'description',
     temperament: 'temperament',
     medicalHistory: 'medicalHistory',
@@ -4262,6 +4331,20 @@ export namespace Prisma {
 
 
   /**
+   * Reference to a field of type 'Gender'
+   */
+  export type EnumGenderFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Gender'>
+    
+
+
+  /**
+   * Reference to a field of type 'Gender[]'
+   */
+  export type ListEnumGenderFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Gender[]'>
+    
+
+
+  /**
    * Reference to a field of type 'adoptionRequestStatus'
    */
   export type EnumadoptionRequestStatusFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'adoptionRequestStatus'>
@@ -4364,10 +4447,15 @@ export namespace Prisma {
     id?: StringFilter<"Pet"> | string
     name?: StringFilter<"Pet"> | string
     species?: StringFilter<"Pet"> | string
+    bannerPhoto?: StringFilter<"Pet"> | string
+    multiplePhotos?: StringNullableListFilter<"Pet">
     breed?: StringFilter<"Pet"> | string
     age?: IntFilter<"Pet"> | number
+    specialNeeds?: StringFilter<"Pet"> | string
     size?: EnumpetSizeFilter<"Pet"> | $Enums.petSize
+    gender?: EnumGenderFilter<"Pet"> | $Enums.Gender
     location?: StringFilter<"Pet"> | string
+    healthStatus?: StringFilter<"Pet"> | string
     description?: StringFilter<"Pet"> | string
     temperament?: StringFilter<"Pet"> | string
     medicalHistory?: StringFilter<"Pet"> | string
@@ -4381,10 +4469,15 @@ export namespace Prisma {
     id?: SortOrder
     name?: SortOrder
     species?: SortOrder
+    bannerPhoto?: SortOrder
+    multiplePhotos?: SortOrder
     breed?: SortOrder
     age?: SortOrder
+    specialNeeds?: SortOrder
     size?: SortOrder
+    gender?: SortOrder
     location?: SortOrder
+    healthStatus?: SortOrder
     description?: SortOrder
     temperament?: SortOrder
     medicalHistory?: SortOrder
@@ -4401,10 +4494,15 @@ export namespace Prisma {
     NOT?: PetWhereInput | PetWhereInput[]
     name?: StringFilter<"Pet"> | string
     species?: StringFilter<"Pet"> | string
+    bannerPhoto?: StringFilter<"Pet"> | string
+    multiplePhotos?: StringNullableListFilter<"Pet">
     breed?: StringFilter<"Pet"> | string
     age?: IntFilter<"Pet"> | number
+    specialNeeds?: StringFilter<"Pet"> | string
     size?: EnumpetSizeFilter<"Pet"> | $Enums.petSize
+    gender?: EnumGenderFilter<"Pet"> | $Enums.Gender
     location?: StringFilter<"Pet"> | string
+    healthStatus?: StringFilter<"Pet"> | string
     description?: StringFilter<"Pet"> | string
     temperament?: StringFilter<"Pet"> | string
     medicalHistory?: StringFilter<"Pet"> | string
@@ -4418,10 +4516,15 @@ export namespace Prisma {
     id?: SortOrder
     name?: SortOrder
     species?: SortOrder
+    bannerPhoto?: SortOrder
+    multiplePhotos?: SortOrder
     breed?: SortOrder
     age?: SortOrder
+    specialNeeds?: SortOrder
     size?: SortOrder
+    gender?: SortOrder
     location?: SortOrder
+    healthStatus?: SortOrder
     description?: SortOrder
     temperament?: SortOrder
     medicalHistory?: SortOrder
@@ -4442,10 +4545,15 @@ export namespace Prisma {
     id?: StringWithAggregatesFilter<"Pet"> | string
     name?: StringWithAggregatesFilter<"Pet"> | string
     species?: StringWithAggregatesFilter<"Pet"> | string
+    bannerPhoto?: StringWithAggregatesFilter<"Pet"> | string
+    multiplePhotos?: StringNullableListFilter<"Pet">
     breed?: StringWithAggregatesFilter<"Pet"> | string
     age?: IntWithAggregatesFilter<"Pet"> | number
+    specialNeeds?: StringWithAggregatesFilter<"Pet"> | string
     size?: EnumpetSizeWithAggregatesFilter<"Pet"> | $Enums.petSize
+    gender?: EnumGenderWithAggregatesFilter<"Pet"> | $Enums.Gender
     location?: StringWithAggregatesFilter<"Pet"> | string
+    healthStatus?: StringWithAggregatesFilter<"Pet"> | string
     description?: StringWithAggregatesFilter<"Pet"> | string
     temperament?: StringWithAggregatesFilter<"Pet"> | string
     medicalHistory?: StringWithAggregatesFilter<"Pet"> | string
@@ -4600,10 +4708,15 @@ export namespace Prisma {
     id?: string
     name: string
     species: string
+    bannerPhoto: string
+    multiplePhotos?: PetCreatemultiplePhotosInput | string[]
     breed: string
     age: number
+    specialNeeds: string
     size: $Enums.petSize
+    gender: $Enums.Gender
     location: string
+    healthStatus: string
     description: string
     temperament: string
     medicalHistory: string
@@ -4617,10 +4730,15 @@ export namespace Prisma {
     id?: string
     name: string
     species: string
+    bannerPhoto: string
+    multiplePhotos?: PetCreatemultiplePhotosInput | string[]
     breed: string
     age: number
+    specialNeeds: string
     size: $Enums.petSize
+    gender: $Enums.Gender
     location: string
+    healthStatus: string
     description: string
     temperament: string
     medicalHistory: string
@@ -4634,10 +4752,15 @@ export namespace Prisma {
     id?: StringFieldUpdateOperationsInput | string
     name?: StringFieldUpdateOperationsInput | string
     species?: StringFieldUpdateOperationsInput | string
+    bannerPhoto?: StringFieldUpdateOperationsInput | string
+    multiplePhotos?: PetUpdatemultiplePhotosInput | string[]
     breed?: StringFieldUpdateOperationsInput | string
     age?: IntFieldUpdateOperationsInput | number
+    specialNeeds?: StringFieldUpdateOperationsInput | string
     size?: EnumpetSizeFieldUpdateOperationsInput | $Enums.petSize
+    gender?: EnumGenderFieldUpdateOperationsInput | $Enums.Gender
     location?: StringFieldUpdateOperationsInput | string
+    healthStatus?: StringFieldUpdateOperationsInput | string
     description?: StringFieldUpdateOperationsInput | string
     temperament?: StringFieldUpdateOperationsInput | string
     medicalHistory?: StringFieldUpdateOperationsInput | string
@@ -4651,10 +4774,15 @@ export namespace Prisma {
     id?: StringFieldUpdateOperationsInput | string
     name?: StringFieldUpdateOperationsInput | string
     species?: StringFieldUpdateOperationsInput | string
+    bannerPhoto?: StringFieldUpdateOperationsInput | string
+    multiplePhotos?: PetUpdatemultiplePhotosInput | string[]
     breed?: StringFieldUpdateOperationsInput | string
     age?: IntFieldUpdateOperationsInput | number
+    specialNeeds?: StringFieldUpdateOperationsInput | string
     size?: EnumpetSizeFieldUpdateOperationsInput | $Enums.petSize
+    gender?: EnumGenderFieldUpdateOperationsInput | $Enums.Gender
     location?: StringFieldUpdateOperationsInput | string
+    healthStatus?: StringFieldUpdateOperationsInput | string
     description?: StringFieldUpdateOperationsInput | string
     temperament?: StringFieldUpdateOperationsInput | string
     medicalHistory?: StringFieldUpdateOperationsInput | string
@@ -4668,10 +4796,15 @@ export namespace Prisma {
     id?: string
     name: string
     species: string
+    bannerPhoto: string
+    multiplePhotos?: PetCreatemultiplePhotosInput | string[]
     breed: string
     age: number
+    specialNeeds: string
     size: $Enums.petSize
+    gender: $Enums.Gender
     location: string
+    healthStatus: string
     description: string
     temperament: string
     medicalHistory: string
@@ -4684,10 +4817,15 @@ export namespace Prisma {
     id?: StringFieldUpdateOperationsInput | string
     name?: StringFieldUpdateOperationsInput | string
     species?: StringFieldUpdateOperationsInput | string
+    bannerPhoto?: StringFieldUpdateOperationsInput | string
+    multiplePhotos?: PetUpdatemultiplePhotosInput | string[]
     breed?: StringFieldUpdateOperationsInput | string
     age?: IntFieldUpdateOperationsInput | number
+    specialNeeds?: StringFieldUpdateOperationsInput | string
     size?: EnumpetSizeFieldUpdateOperationsInput | $Enums.petSize
+    gender?: EnumGenderFieldUpdateOperationsInput | $Enums.Gender
     location?: StringFieldUpdateOperationsInput | string
+    healthStatus?: StringFieldUpdateOperationsInput | string
     description?: StringFieldUpdateOperationsInput | string
     temperament?: StringFieldUpdateOperationsInput | string
     medicalHistory?: StringFieldUpdateOperationsInput | string
@@ -4700,10 +4838,15 @@ export namespace Prisma {
     id?: StringFieldUpdateOperationsInput | string
     name?: StringFieldUpdateOperationsInput | string
     species?: StringFieldUpdateOperationsInput | string
+    bannerPhoto?: StringFieldUpdateOperationsInput | string
+    multiplePhotos?: PetUpdatemultiplePhotosInput | string[]
     breed?: StringFieldUpdateOperationsInput | string
     age?: IntFieldUpdateOperationsInput | number
+    specialNeeds?: StringFieldUpdateOperationsInput | string
     size?: EnumpetSizeFieldUpdateOperationsInput | $Enums.petSize
+    gender?: EnumGenderFieldUpdateOperationsInput | $Enums.Gender
     location?: StringFieldUpdateOperationsInput | string
+    healthStatus?: StringFieldUpdateOperationsInput | string
     description?: StringFieldUpdateOperationsInput | string
     temperament?: StringFieldUpdateOperationsInput | string
     medicalHistory?: StringFieldUpdateOperationsInput | string
@@ -4895,6 +5038,14 @@ export namespace Prisma {
     _max?: NestedDateTimeFilter<$PrismaModel>
   }
 
+  export type StringNullableListFilter<$PrismaModel = never> = {
+    equals?: string[] | ListStringFieldRefInput<$PrismaModel> | null
+    has?: string | StringFieldRefInput<$PrismaModel> | null
+    hasEvery?: string[] | ListStringFieldRefInput<$PrismaModel>
+    hasSome?: string[] | ListStringFieldRefInput<$PrismaModel>
+    isEmpty?: boolean
+  }
+
   export type IntFilter<$PrismaModel = never> = {
     equals?: number | IntFieldRefInput<$PrismaModel>
     in?: number[] | ListIntFieldRefInput<$PrismaModel>
@@ -4913,14 +5064,26 @@ export namespace Prisma {
     not?: NestedEnumpetSizeFilter<$PrismaModel> | $Enums.petSize
   }
 
+  export type EnumGenderFilter<$PrismaModel = never> = {
+    equals?: $Enums.Gender | EnumGenderFieldRefInput<$PrismaModel>
+    in?: $Enums.Gender[] | ListEnumGenderFieldRefInput<$PrismaModel>
+    notIn?: $Enums.Gender[] | ListEnumGenderFieldRefInput<$PrismaModel>
+    not?: NestedEnumGenderFilter<$PrismaModel> | $Enums.Gender
+  }
+
   export type PetCountOrderByAggregateInput = {
     id?: SortOrder
     name?: SortOrder
     species?: SortOrder
+    bannerPhoto?: SortOrder
+    multiplePhotos?: SortOrder
     breed?: SortOrder
     age?: SortOrder
+    specialNeeds?: SortOrder
     size?: SortOrder
+    gender?: SortOrder
     location?: SortOrder
+    healthStatus?: SortOrder
     description?: SortOrder
     temperament?: SortOrder
     medicalHistory?: SortOrder
@@ -4937,10 +5100,14 @@ export namespace Prisma {
     id?: SortOrder
     name?: SortOrder
     species?: SortOrder
+    bannerPhoto?: SortOrder
     breed?: SortOrder
     age?: SortOrder
+    specialNeeds?: SortOrder
     size?: SortOrder
+    gender?: SortOrder
     location?: SortOrder
+    healthStatus?: SortOrder
     description?: SortOrder
     temperament?: SortOrder
     medicalHistory?: SortOrder
@@ -4953,10 +5120,14 @@ export namespace Prisma {
     id?: SortOrder
     name?: SortOrder
     species?: SortOrder
+    bannerPhoto?: SortOrder
     breed?: SortOrder
     age?: SortOrder
+    specialNeeds?: SortOrder
     size?: SortOrder
+    gender?: SortOrder
     location?: SortOrder
+    healthStatus?: SortOrder
     description?: SortOrder
     temperament?: SortOrder
     medicalHistory?: SortOrder
@@ -4993,6 +5164,16 @@ export namespace Prisma {
     _count?: NestedIntFilter<$PrismaModel>
     _min?: NestedEnumpetSizeFilter<$PrismaModel>
     _max?: NestedEnumpetSizeFilter<$PrismaModel>
+  }
+
+  export type EnumGenderWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: $Enums.Gender | EnumGenderFieldRefInput<$PrismaModel>
+    in?: $Enums.Gender[] | ListEnumGenderFieldRefInput<$PrismaModel>
+    notIn?: $Enums.Gender[] | ListEnumGenderFieldRefInput<$PrismaModel>
+    not?: NestedEnumGenderWithAggregatesFilter<$PrismaModel> | $Enums.Gender
+    _count?: NestedIntFilter<$PrismaModel>
+    _min?: NestedEnumGenderFilter<$PrismaModel>
+    _max?: NestedEnumGenderFilter<$PrismaModel>
   }
 
   export type EnumadoptionRequestStatusFilter<$PrismaModel = never> = {
@@ -5106,6 +5287,10 @@ export namespace Prisma {
     deleteMany?: AdoptionRequestScalarWhereInput | AdoptionRequestScalarWhereInput[]
   }
 
+  export type PetCreatemultiplePhotosInput = {
+    set: string[]
+  }
+
   export type AdoptionRequestCreateNestedManyWithoutPetInput = {
     create?: XOR<AdoptionRequestCreateWithoutPetInput, AdoptionRequestUncheckedCreateWithoutPetInput> | AdoptionRequestCreateWithoutPetInput[] | AdoptionRequestUncheckedCreateWithoutPetInput[]
     connectOrCreate?: AdoptionRequestCreateOrConnectWithoutPetInput | AdoptionRequestCreateOrConnectWithoutPetInput[]
@@ -5120,6 +5305,11 @@ export namespace Prisma {
     connect?: AdoptionRequestWhereUniqueInput | AdoptionRequestWhereUniqueInput[]
   }
 
+  export type PetUpdatemultiplePhotosInput = {
+    set?: string[]
+    push?: string | string[]
+  }
+
   export type IntFieldUpdateOperationsInput = {
     set?: number
     increment?: number
@@ -5130,6 +5320,10 @@ export namespace Prisma {
 
   export type EnumpetSizeFieldUpdateOperationsInput = {
     set?: $Enums.petSize
+  }
+
+  export type EnumGenderFieldUpdateOperationsInput = {
+    set?: $Enums.Gender
   }
 
   export type AdoptionRequestUpdateManyWithoutPetNestedInput = {
@@ -5283,6 +5477,13 @@ export namespace Prisma {
     not?: NestedEnumpetSizeFilter<$PrismaModel> | $Enums.petSize
   }
 
+  export type NestedEnumGenderFilter<$PrismaModel = never> = {
+    equals?: $Enums.Gender | EnumGenderFieldRefInput<$PrismaModel>
+    in?: $Enums.Gender[] | ListEnumGenderFieldRefInput<$PrismaModel>
+    notIn?: $Enums.Gender[] | ListEnumGenderFieldRefInput<$PrismaModel>
+    not?: NestedEnumGenderFilter<$PrismaModel> | $Enums.Gender
+  }
+
   export type NestedIntWithAggregatesFilter<$PrismaModel = never> = {
     equals?: number | IntFieldRefInput<$PrismaModel>
     in?: number[] | ListIntFieldRefInput<$PrismaModel>
@@ -5318,6 +5519,16 @@ export namespace Prisma {
     _count?: NestedIntFilter<$PrismaModel>
     _min?: NestedEnumpetSizeFilter<$PrismaModel>
     _max?: NestedEnumpetSizeFilter<$PrismaModel>
+  }
+
+  export type NestedEnumGenderWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: $Enums.Gender | EnumGenderFieldRefInput<$PrismaModel>
+    in?: $Enums.Gender[] | ListEnumGenderFieldRefInput<$PrismaModel>
+    notIn?: $Enums.Gender[] | ListEnumGenderFieldRefInput<$PrismaModel>
+    not?: NestedEnumGenderWithAggregatesFilter<$PrismaModel> | $Enums.Gender
+    _count?: NestedIntFilter<$PrismaModel>
+    _min?: NestedEnumGenderFilter<$PrismaModel>
+    _max?: NestedEnumGenderFilter<$PrismaModel>
   }
 
   export type NestedEnumadoptionRequestStatusFilter<$PrismaModel = never> = {
@@ -5467,10 +5678,15 @@ export namespace Prisma {
     id?: string
     name: string
     species: string
+    bannerPhoto: string
+    multiplePhotos?: PetCreatemultiplePhotosInput | string[]
     breed: string
     age: number
+    specialNeeds: string
     size: $Enums.petSize
+    gender: $Enums.Gender
     location: string
+    healthStatus: string
     description: string
     temperament: string
     medicalHistory: string
@@ -5483,10 +5699,15 @@ export namespace Prisma {
     id?: string
     name: string
     species: string
+    bannerPhoto: string
+    multiplePhotos?: PetCreatemultiplePhotosInput | string[]
     breed: string
     age: number
+    specialNeeds: string
     size: $Enums.petSize
+    gender: $Enums.Gender
     location: string
+    healthStatus: string
     description: string
     temperament: string
     medicalHistory: string
@@ -5546,10 +5767,15 @@ export namespace Prisma {
     id?: StringFieldUpdateOperationsInput | string
     name?: StringFieldUpdateOperationsInput | string
     species?: StringFieldUpdateOperationsInput | string
+    bannerPhoto?: StringFieldUpdateOperationsInput | string
+    multiplePhotos?: PetUpdatemultiplePhotosInput | string[]
     breed?: StringFieldUpdateOperationsInput | string
     age?: IntFieldUpdateOperationsInput | number
+    specialNeeds?: StringFieldUpdateOperationsInput | string
     size?: EnumpetSizeFieldUpdateOperationsInput | $Enums.petSize
+    gender?: EnumGenderFieldUpdateOperationsInput | $Enums.Gender
     location?: StringFieldUpdateOperationsInput | string
+    healthStatus?: StringFieldUpdateOperationsInput | string
     description?: StringFieldUpdateOperationsInput | string
     temperament?: StringFieldUpdateOperationsInput | string
     medicalHistory?: StringFieldUpdateOperationsInput | string
@@ -5562,10 +5788,15 @@ export namespace Prisma {
     id?: StringFieldUpdateOperationsInput | string
     name?: StringFieldUpdateOperationsInput | string
     species?: StringFieldUpdateOperationsInput | string
+    bannerPhoto?: StringFieldUpdateOperationsInput | string
+    multiplePhotos?: PetUpdatemultiplePhotosInput | string[]
     breed?: StringFieldUpdateOperationsInput | string
     age?: IntFieldUpdateOperationsInput | number
+    specialNeeds?: StringFieldUpdateOperationsInput | string
     size?: EnumpetSizeFieldUpdateOperationsInput | $Enums.petSize
+    gender?: EnumGenderFieldUpdateOperationsInput | $Enums.Gender
     location?: StringFieldUpdateOperationsInput | string
+    healthStatus?: StringFieldUpdateOperationsInput | string
     description?: StringFieldUpdateOperationsInput | string
     temperament?: StringFieldUpdateOperationsInput | string
     medicalHistory?: StringFieldUpdateOperationsInput | string
