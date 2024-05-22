@@ -22,16 +22,21 @@ const createPet = async (payload: Pet, file: any) => {
     const result = await prisma.pet.create({
         data: payload,
     })
-    
+
     return result
 }
 
 
-const uploadMultiplePhotos = async (files:any) => {
+const uploadMultiplePhotos = async (files:any,id:string) => {
+await prisma.pet.findUniqueOrThrow({
+    where:{
+        id
+    }
+})
+
     if (!files || files.length <= 0) {
         throw new ApiError(404, "Multiple photos/files not found");
     }
-console.log(files);
     const multiplePhotos:string[] = [];
 
     // Using for...of loop to ensure await works properly
@@ -45,7 +50,18 @@ console.log(files);
         multiplePhotos.push(secure_url as string);
     }
 
-    return multiplePhotos;
+    const updatedPet =await prisma.pet.update({
+        where:{
+            id
+        },
+        data:{
+            multiplePhotos
+        }
+    })
+    return {
+        multiplePhotos,
+        updatedPet   
+    };
 };
 
 

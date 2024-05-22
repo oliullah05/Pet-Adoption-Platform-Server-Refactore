@@ -20,8 +20,9 @@ const createPet = catchAsync(async (req, res) => {
 })
 
 const uploadMultiplePhotos = catchAsync(async (req, res) => {
+   const id = req.body.id
     const files = req.files
-    const result = await PetServices.uploadMultiplePhotos(files);
+    const result = await PetServices.uploadMultiplePhotos(files,id);
     sendResponse(res, {
         success: true,
         message: "Multiple Photo Uploaded Successfully",
