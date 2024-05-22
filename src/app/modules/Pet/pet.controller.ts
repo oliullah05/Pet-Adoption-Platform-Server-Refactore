@@ -7,9 +7,10 @@ import { petFilterableFields, petUpdateableFields } from "./pet.const";
 
 
 const createPet = catchAsync(async (req, res) => {
-
-   const petData = req.body;
-    const result = await PetServices.createPet(petData);
+    const file = req.file
+    // console.log({file},77);
+    const petData = req.body;
+    const result = await PetServices.createPet(petData, file);
     sendResponse(res, {
         success: true,
         message: "Pet added successfully",
@@ -23,8 +24,8 @@ const createPet = catchAsync(async (req, res) => {
 const getAllPets = catchAsync(async (req, res) => {
 
     const filters = pick(req.query, petFilterableFields);
-    const options = pick(req.query, ['page', "limit", "sortBy", "sortOrder","age"]);
-    const result = await PetServices.getAllPet(filters, options,req.query as Record<string, string>);
+    const options = pick(req.query, ['page', "limit", "sortBy", "sortOrder", "age"]);
+    const result = await PetServices.getAllPet(filters, options, req.query as Record<string, string>);
     sendResponse(res, {
         success: true,
         message: "Pets retrieved successfully",

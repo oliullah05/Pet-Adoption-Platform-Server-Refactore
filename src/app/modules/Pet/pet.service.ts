@@ -4,11 +4,21 @@ import { paginationHelper } from "../../helpers/paginationHelpers";
 import { IPaginationOptions } from "../../interface/pagination";
 import prisma from "../../shared/prisma";
 import { petSearchableFields } from "./pet.const";
+import { sendImageToCloudinary } from "../../helpers/fileUploader";
 
 
 
 
-const createPet = async (payload: Pet) => {
+const createPet = async (payload: Pet,file:any) => {
+    // console.log(file);
+    if (file) {
+        const path = file?.path
+        const imageName = `${Math.random().toFixed(3).toString()} ${payload?.name}`
+        //send image to cloudinary
+        const { secure_url } = await sendImageToCloudinary(imageName, path)
+        payload.bannerPhoto = secure_url as string
+        console.log({payload});
+      }
     const result = await prisma.pet.create({
         data: payload,
     })
@@ -39,8 +49,6 @@ const getAllPet = async (params: any, options: IPaginationOptions, query: Record
         })
     }
 
-
-
     if (query?.age) {
         andConditions.push({
             age: {
@@ -48,10 +56,6 @@ const getAllPet = async (params: any, options: IPaginationOptions, query: Record
             }
         });
     }
-
-
-    console.dir({ andConditions }, { depth: "infinity" });
-
 
     if (Object.keys(filterData).length > 0) {
         andConditions.push({
@@ -66,7 +70,6 @@ const getAllPet = async (params: any, options: IPaginationOptions, query: Record
         })
     }
 
-    console.log({ filterData });
 
     const whereConditions: Prisma.PetWhereInput = { AND: andConditions }
     // console.dir(andConditions,{depth:"infinity"});
