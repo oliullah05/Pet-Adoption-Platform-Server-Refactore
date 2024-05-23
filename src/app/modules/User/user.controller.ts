@@ -4,6 +4,7 @@ import pick from "../../shared/pick";
 import sendResponse from "../../shared/sendResponse";
 import { userFilterableFields } from "./user.const";
 import { UserServices } from "./user.service";
+import ApiError from "../../errors/ApiError";
 
 
 const createUser = catchAsync(async (req, res) => {
@@ -36,33 +37,6 @@ const getAllUser = catchAsync(async (req, res) => {
 })
 
 
-const getMe = catchAsync(async (req, res) => {
-    const email = req.user.email;
-    const result = await UserServices.getMe(email);
-    sendResponse(res, {
-        success: true,
-        message: "User profile retrieved successfully",
-        statusCode: httpStatus.OK,
-        data: result
-    })
-
-})
-
-
-const updateMe = catchAsync(async (req, res) => {
-    const data = req.body;
-    const email = req.user.email;
-    const result = await UserServices.updateMe(data,email);
-    sendResponse(res, {
-        success: true,
-        message: "User profile updated successfully",
-        statusCode: httpStatus.CREATED,
-        data: result
-    })
-
-})
-
-
 
 
 
@@ -70,7 +44,5 @@ const updateMe = catchAsync(async (req, res) => {
 
 export const UserControllers = {
     getAllUser,
-    createUser,
-    getMe,
-    updateMe
+    createUser
 }

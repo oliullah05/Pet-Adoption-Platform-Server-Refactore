@@ -10,8 +10,6 @@ const router = express.Router();
 
 router.get("/user",UserControllers.getAllUser);
 router.post("/register",validateRequest(UserValidations.createUser), UserControllers.createUser);
-router.get("/profile", auth(), UserControllers.getMe);
-router.post("/profile", auth(), UserControllers.updateMe);
 
 
 

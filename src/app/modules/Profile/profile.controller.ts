@@ -19,20 +19,17 @@ const getMe = catchAsync(async (req, res) => {
     })
 
 })
+
 const updateMe = catchAsync(async (req, res) => {
-// if(Object.keys(req.body).length<0){
-//     throw new ApiError(500,"For update give some data first!!")
-// }
     const id = req.user.id;
-    const data = pick(req.body,["name","email"])
-    const result = await ProfileServices.updateMe(id,data);
+    const data = pick(req.body,["name","email"]) as {email:string,name:string}
+    const result = await ProfileServices.updateMe(data,id);
     sendResponse(res, {
         success: true,
         message: "User profile updated successfully",
         statusCode: httpStatus.OK,
         data: result
     })
-
 })
 
 

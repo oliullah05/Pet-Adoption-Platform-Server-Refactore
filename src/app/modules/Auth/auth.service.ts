@@ -3,6 +3,8 @@ import config from "../../config";
 import { jwtHelpers } from "../../helpers/jwtHelpers";
 import prisma from "../../shared/prisma";
 import bcrypt from "bcrypt"
+
+
 const loginUser = async (payload: { emailOrName: string, password: string }) => {
     const userData = await prisma.user.findFirstOrThrow({
         where: {

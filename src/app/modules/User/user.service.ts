@@ -112,49 +112,10 @@ const getAllUser = async (params: any, options: IPaginationOptions) => {
 }
 
 
-const getMe = async (email: string) => {
-    const result = await prisma.user.findUniqueOrThrow({
-        where: {
-            email
-        },
-        select: {
-            id: true,
-            name: true,
-            email: true,
-            createdAt: true,
-            updatedAt: true
-        }
-    })
-
-    return result;
-}
-
-
-const updateMe = async (payload: User, email: string) => {
-    await prisma.user.findUniqueOrThrow({
-        where: {
-            email
-        }
-    })
-
-    const result = await prisma.user.update({
-        where: {
-            email
-        },
-        data: payload
-    })
-
-    return result;
-}
-
-
-
-
 
 
 export const UserServices = {
     getAllUser,
     createUser,
-    getMe,
-    updateMe
+  
 }
