@@ -7,6 +7,19 @@ const loginUser = z.object({
     })
 })
 
+
+const changePassword = z.object({
+    body: z.object({
+      oldPassword: z.string({
+        required_error: 'Old password is required'
+      }),
+      newPassword: z
+        .string({ required_error: 'Password is required' })
+        .min(6, { message: 'Password must be at least 6 characters long.' })
+    })
+  })
+  
 export const AuthValidations = {
-    loginUser
+    loginUser,
+    changePassword
 }
