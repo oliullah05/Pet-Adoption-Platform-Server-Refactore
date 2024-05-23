@@ -16,6 +16,8 @@ ProfileControllers.updateMe);
 
 router.post("/change-role/:id",auth("admin"), validateRequest(ProfileValidations.changeUserRole) ,ProfileControllers.changeUserRole);
 
+router.post("/change-status/:id",auth("admin"), validateRequest(ProfileValidations.changeUserStatus),ProfileControllers.changeUserStatus);
+
 
 
 export const ProfileRoutes = router;

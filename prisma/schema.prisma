@@ -18,6 +18,7 @@ model User {
   id               String            @id @default(uuid())
   name             String
   role             Role              @default(user)
+  status        Status    @default(active)
   email            String            @unique
   password         String
   createdAt        DateTime          @default(now())
@@ -26,7 +27,11 @@ model User {
 
   @@map("users")
 }
-
+enum Status {
+  active
+  deactive
+  blocked
+}
 enum Role {
   admin
   user

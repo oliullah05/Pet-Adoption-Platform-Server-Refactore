@@ -1,6 +1,6 @@
 import { User } from "@prisma/client";
 import prisma from "../../shared/prisma";
-import { Role } from "../../../../prisma/generated/client";
+import { Role, Status } from "../../../../prisma/generated/client";
 
 
 const getMe = async (id: string) => {
@@ -12,6 +12,7 @@ const getMe = async (id: string) => {
             id: true,
             name: true,
             role:true,
+            status:true,
             email: true,
             createdAt: true,
             updatedAt: true
@@ -38,6 +39,7 @@ const updateMe = async (payload: {email:string,name:string}, id: string) => {
             id: true,
             name: true,
             role:true,
+            status:true,
             email: true,
             createdAt: true,
             updatedAt: true
@@ -66,6 +68,35 @@ const changeUserRole = async (id: string,role:Role) => {
             id: true,
             name: true,
             email: true,
+            status:true,
+            role:true,
+            createdAt: true,
+            updatedAt: true
+        }
+    })
+
+    return result;
+}
+
+const changeUserStatus= async (id: string,status:Status) => {
+    await prisma.user.findUniqueOrThrow({
+        where: {
+            id
+        }
+    })
+
+    const result = await prisma.user.update({
+        where: {
+            id
+        },
+        data:{
+            status
+        },
+        select: {
+            id: true,
+            name: true,
+            email: true,
+            status:true,
             role:true,
             createdAt: true,
             updatedAt: true
@@ -84,5 +115,6 @@ const changeUserRole = async (id: string,role:Role) => {
 export const ProfileServices = {
     getMe,
     updateMe,
-    changeUserRole
+    changeUserRole,
+    changeUserStatus
 }

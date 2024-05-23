@@ -123,6 +123,7 @@ exports.Prisma.UserScalarFieldEnum = {
   id: 'id',
   name: 'name',
   role: 'role',
+  status: 'status',
   email: 'email',
   password: 'password',
   createdAt: 'createdAt',
@@ -180,6 +181,12 @@ exports.Prisma.NullsOrder = {
 exports.Role = exports.$Enums.Role = {
   admin: 'admin',
   user: 'user'
+};
+
+exports.Status = exports.$Enums.Status = {
+  active: 'active',
+  deactive: 'deactive',
+  blocked: 'blocked'
 };
 
 exports.petSize = exports.$Enums.petSize = {
