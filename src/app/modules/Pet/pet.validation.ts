@@ -46,7 +46,7 @@ const updatePet = z.object({
     bannerPhoto: z.string().optional(),
     multiplePhotos: z.array(z.string().optional()).optional(),
     breed: z.string().optional(),
-    age: z.number().int().optional(),
+    age: z.number().int({message:"Age must be number"}).optional(),
     specialNeeds: z.string().optional(),
     size: PetSizeEnum.optional(),
     gender: GenderEnum.optional(),

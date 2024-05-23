@@ -9,7 +9,7 @@ const router = express.Router();
 
 
 router.post("/",
-auth(), 
+auth("admin"),
 upload.single('file'),
 (req: Request, res: Response, next: NextFunction) => {
     req.body = JSON.parse(req.body.data);
@@ -26,7 +26,7 @@ PetControllers.uploadMultiplePhotos
 )
 
 router.get("/",auth(), PetControllers.getAllPets);
-router.put("/:id",auth(),validateRequest(PetValidations.updatePet), PetControllers.updateSinglePet);
+router.put("/:id",auth("admin"),validateRequest(PetValidations.updatePet), PetControllers.updateSinglePet);
 
 
 

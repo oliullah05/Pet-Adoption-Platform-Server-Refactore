@@ -50,6 +50,18 @@ const updateAdoptionRequests = catchAsync(async (req, res) => {
 
 })
 
+const myAdoptionRequest = catchAsync(async (req, res) => {
+    const id = req.user.id;
+    const result = await AdoptionRequestServices.myAdoptionRequest(id);
+    sendResponse(res, {
+        success: true,
+        message: "My Adoption request retrieved successfully",
+        statusCode: httpStatus.OK,
+        data: result
+    })
+
+})
+
 
 
 
@@ -59,5 +71,6 @@ const updateAdoptionRequests = catchAsync(async (req, res) => {
 export const AdoptionRequestControllers = {
     createAdoptionRequest,
     getAllAdoptionRequests,
-    updateAdoptionRequests
+    updateAdoptionRequests,
+    myAdoptionRequest
 }

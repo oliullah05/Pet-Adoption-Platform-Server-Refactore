@@ -26,4 +26,9 @@ validateRequest(AdoptionRequestValidations.updateAdoptionRequest),
 AdoptionRequestControllers.updateAdoptionRequests
 )
 
+router.get("/my",
+auth(),
+AdoptionRequestControllers.myAdoptionRequest
+)
+
 export const AdoptionRequestRoutes = router;

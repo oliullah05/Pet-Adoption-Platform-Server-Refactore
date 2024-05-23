@@ -26,7 +26,6 @@ app.get("/", (req: Request, res: Response) => {
 app.use(globalErrorHandler)
 
 app.use((req:Request,res:Response,next:NextFunction)=>{
-    console.log(req);
     res.status(404).json({
         success:false,
         message: "Api Not Found",

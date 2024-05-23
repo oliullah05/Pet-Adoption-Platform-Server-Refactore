@@ -7,7 +7,7 @@ interface PetInfo {
     address: string;
     phoneNumber: string;
     message: string;
-    userId:string
+    userId: string
 
 }
 
@@ -58,8 +58,31 @@ const updateAdoptionRequests = async (id: string, data: Partial<AdoptionRequest>
 }
 
 
+const myAdoptionRequest = async (id: string) => {
+await prisma.user.findUniqueOrThrow({
+    where:{
+        id
+    }
+})
+
+const result = await prisma.adoptionRequest.findMany({
+    where:{
+        userId:id
+    }
+})
+
+return result
+
+}
+
+
+
+
+
+
 export const AdoptionRequestServices = {
     createAdoptionRequest,
     getAllAdoptionRequests,
-    updateAdoptionRequests
+    updateAdoptionRequests,
+    myAdoptionRequest
 }
