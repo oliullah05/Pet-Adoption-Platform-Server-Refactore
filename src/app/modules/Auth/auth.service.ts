@@ -21,7 +21,7 @@ const loginUser = async (payload: { emailOrName: string, password: string }) => 
         throw new Error("Password incorrect")
     }
 
-    const jwtPayload = { email: userData.email,id:userData.id }
+    const jwtPayload = { email: userData.email,id:userData.id,role:userData.role }
     
     const accessToken = jwtHelpers.genarateToken(jwtPayload, config.jwt.jwt_access_secret as string, config.jwt.jwt_access_expaire_in as string)
 

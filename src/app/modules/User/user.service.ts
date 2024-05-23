@@ -117,5 +117,4 @@ const getAllUser = async (params: any, options: IPaginationOptions) => {
 export const UserServices = {
     getAllUser,
     createUser,
-  
 }

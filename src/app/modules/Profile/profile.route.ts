@@ -14,6 +14,7 @@ router.put("/",auth(),
 validateRequest(ProfileValidations.updateMe), 
 ProfileControllers.updateMe);
 
+router.post("/change-role/:id",auth("admin"), validateRequest(ProfileValidations.changeUserRole) ,ProfileControllers.changeUserRole);
 
 
 

@@ -66,6 +66,7 @@ const changeUserRole = async (id: string,role:Role) => {
             id: true,
             name: true,
             email: true,
+            role:true,
             createdAt: true,
             updatedAt: true
         }
@@ -82,5 +83,6 @@ const changeUserRole = async (id: string,role:Role) => {
 
 export const ProfileServices = {
     getMe,
-    updateMe
+    updateMe,
+    changeUserRole
 }
