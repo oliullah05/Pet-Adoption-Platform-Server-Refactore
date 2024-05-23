@@ -49,6 +49,20 @@ const getMe = catchAsync(async (req, res) => {
 })
 
 
+const updateMe = catchAsync(async (req, res) => {
+    const data = req.body;
+    const email = req.user.email;
+    const result = await UserServices.updateMe(data,email);
+    sendResponse(res, {
+        success: true,
+        message: "User profile updated successfully",
+        statusCode: httpStatus.CREATED,
+        data: result
+    })
+
+})
+
+
 
 
 
@@ -57,5 +71,6 @@ const getMe = catchAsync(async (req, res) => {
 export const UserControllers = {
     getAllUser,
     createUser,
-    getMe
+    getMe,
+    updateMe
 }

@@ -130,6 +130,24 @@ const getMe = async (email: string) => {
 }
 
 
+const updateMe = async (payload: User, email: string) => {
+    await prisma.user.findUniqueOrThrow({
+        where: {
+            email
+        }
+    })
+
+    const result = await prisma.user.update({
+        where: {
+            email
+        },
+        data: payload
+    })
+
+    return result;
+}
+
+
 
 
 
@@ -137,5 +155,6 @@ const getMe = async (email: string) => {
 export const UserServices = {
     getAllUser,
     createUser,
-    getMe
+    getMe,
+    updateMe
 }
