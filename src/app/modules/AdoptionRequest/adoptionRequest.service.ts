@@ -1,7 +1,18 @@
+
 import { AdoptionRequest } from "@prisma/client";
 import prisma from "../../shared/prisma";
 
-const createAdoptionRequest = async (payload: AdoptionRequest, email: string) => {
+interface PetInfo {
+    petId: string;
+    address: string;
+    phoneNumber: string;
+    message: string;
+    userId:string
+
+}
+
+
+const createAdoptionRequest = async (payload: PetInfo, email: string) => {
 
     const userData = await prisma.user.findUniqueOrThrow({
         where: {
@@ -9,11 +20,11 @@ const createAdoptionRequest = async (payload: AdoptionRequest, email: string) =>
         }
     });
 
-await prisma.pet.findUniqueOrThrow({
-    where:{
-        id:payload.petId
-    }
-})
+    await prisma.pet.findUniqueOrThrow({
+        where: {
+            id: payload.petId
+        }
+    })
 
     payload.userId = userData.id;
     const result = await prisma.adoptionRequest.create({
@@ -24,28 +35,28 @@ await prisma.pet.findUniqueOrThrow({
 }
 
 
-const getAllAdoptionRequests = async()=>{
+const getAllAdoptionRequests = async () => {
     const result = await prisma.adoptionRequest.findMany()
     return result
 }
 
-const updateAdoptionRequests = async(id:string,data:Partial<AdoptionRequest>)=>{
+const updateAdoptionRequests = async (id: string, data: Partial<AdoptionRequest>) => {
 
-await prisma.adoptionRequest.findUniqueOrThrow({
-    where:{
-        id
-    }
-})
+    await prisma.adoptionRequest.findUniqueOrThrow({
+        where: {
+            id
+        }
+    })
 
     const result = await prisma.adoptionRequest.update({
-        where:{
+        where: {
             id
         },
-        data:data
+        data
     })
     return result
-    }
-    
+}
+
 
 export const AdoptionRequestServices = {
     createAdoptionRequest,

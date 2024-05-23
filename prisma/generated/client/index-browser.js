@@ -154,6 +154,9 @@ exports.Prisma.AdoptionRequestScalarFieldEnum = {
   id: 'id',
   status: 'status',
   petOwnershipExperience: 'petOwnershipExperience',
+  address: 'address',
+  phoneNumber: 'phoneNumber',
+  message: 'message',
   createdAt: 'createdAt',
   updatedAt: 'updatedAt',
   userId: 'userId',
@@ -168,6 +171,11 @@ exports.Prisma.SortOrder = {
 exports.Prisma.QueryMode = {
   default: 'default',
   insensitive: 'insensitive'
+};
+
+exports.Prisma.NullsOrder = {
+  first: 'first',
+  last: 'last'
 };
 exports.Role = exports.$Enums.Role = {
   admin: 'admin',

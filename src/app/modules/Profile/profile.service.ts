@@ -1,6 +1,5 @@
 import { User } from "@prisma/client";
 import prisma from "../../shared/prisma";
-import { allowedNodeEnvironmentFlags } from "process";
 
 
 

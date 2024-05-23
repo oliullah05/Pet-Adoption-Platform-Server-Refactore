@@ -3244,6 +3244,9 @@ export namespace Prisma {
     id: string | null
     status: $Enums.adoptionRequestStatus | null
     petOwnershipExperience: string | null
+    address: string | null
+    phoneNumber: string | null
+    message: string | null
     createdAt: Date | null
     updatedAt: Date | null
     userId: string | null
@@ -3254,6 +3257,9 @@ export namespace Prisma {
     id: string | null
     status: $Enums.adoptionRequestStatus | null
     petOwnershipExperience: string | null
+    address: string | null
+    phoneNumber: string | null
+    message: string | null
     createdAt: Date | null
     updatedAt: Date | null
     userId: string | null
@@ -3264,6 +3270,9 @@ export namespace Prisma {
     id: number
     status: number
     petOwnershipExperience: number
+    address: number
+    phoneNumber: number
+    message: number
     createdAt: number
     updatedAt: number
     userId: number
@@ -3276,6 +3285,9 @@ export namespace Prisma {
     id?: true
     status?: true
     petOwnershipExperience?: true
+    address?: true
+    phoneNumber?: true
+    message?: true
     createdAt?: true
     updatedAt?: true
     userId?: true
@@ -3286,6 +3298,9 @@ export namespace Prisma {
     id?: true
     status?: true
     petOwnershipExperience?: true
+    address?: true
+    phoneNumber?: true
+    message?: true
     createdAt?: true
     updatedAt?: true
     userId?: true
@@ -3296,6 +3311,9 @@ export namespace Prisma {
     id?: true
     status?: true
     petOwnershipExperience?: true
+    address?: true
+    phoneNumber?: true
+    message?: true
     createdAt?: true
     updatedAt?: true
     userId?: true
@@ -3378,7 +3396,10 @@ export namespace Prisma {
   export type AdoptionRequestGroupByOutputType = {
     id: string
     status: $Enums.adoptionRequestStatus
-    petOwnershipExperience: string
+    petOwnershipExperience: string | null
+    address: string
+    phoneNumber: string
+    message: string
     createdAt: Date
     updatedAt: Date
     userId: string
@@ -3406,6 +3427,9 @@ export namespace Prisma {
     id?: boolean
     status?: boolean
     petOwnershipExperience?: boolean
+    address?: boolean
+    phoneNumber?: boolean
+    message?: boolean
     createdAt?: boolean
     updatedAt?: boolean
     userId?: boolean
@@ -3418,6 +3442,9 @@ export namespace Prisma {
     id?: boolean
     status?: boolean
     petOwnershipExperience?: boolean
+    address?: boolean
+    phoneNumber?: boolean
+    message?: boolean
     createdAt?: boolean
     updatedAt?: boolean
     userId?: boolean
@@ -3439,7 +3466,10 @@ export namespace Prisma {
     scalars: $Extensions.GetPayloadResult<{
       id: string
       status: $Enums.adoptionRequestStatus
-      petOwnershipExperience: string
+      petOwnershipExperience: string | null
+      address: string
+      phoneNumber: string
+      message: string
       createdAt: Date
       updatedAt: Date
       userId: string
@@ -3844,6 +3874,9 @@ export namespace Prisma {
     readonly id: FieldRef<"AdoptionRequest", 'String'>
     readonly status: FieldRef<"AdoptionRequest", 'adoptionRequestStatus'>
     readonly petOwnershipExperience: FieldRef<"AdoptionRequest", 'String'>
+    readonly address: FieldRef<"AdoptionRequest", 'String'>
+    readonly phoneNumber: FieldRef<"AdoptionRequest", 'String'>
+    readonly message: FieldRef<"AdoptionRequest", 'String'>
     readonly createdAt: FieldRef<"AdoptionRequest", 'DateTime'>
     readonly updatedAt: FieldRef<"AdoptionRequest", 'DateTime'>
     readonly userId: FieldRef<"AdoptionRequest", 'String'>
@@ -4230,6 +4263,9 @@ export namespace Prisma {
     id: 'id',
     status: 'status',
     petOwnershipExperience: 'petOwnershipExperience',
+    address: 'address',
+    phoneNumber: 'phoneNumber',
+    message: 'message',
     createdAt: 'createdAt',
     updatedAt: 'updatedAt',
     userId: 'userId',
@@ -4253,6 +4289,14 @@ export namespace Prisma {
   };
 
   export type QueryMode = (typeof QueryMode)[keyof typeof QueryMode]
+
+
+  export const NullsOrder: {
+    first: 'first',
+    last: 'last'
+  };
+
+  export type NullsOrder = (typeof NullsOrder)[keyof typeof NullsOrder]
 
 
   /**
@@ -4568,7 +4612,10 @@ export namespace Prisma {
     NOT?: AdoptionRequestWhereInput | AdoptionRequestWhereInput[]
     id?: StringFilter<"AdoptionRequest"> | string
     status?: EnumadoptionRequestStatusFilter<"AdoptionRequest"> | $Enums.adoptionRequestStatus
-    petOwnershipExperience?: StringFilter<"AdoptionRequest"> | string
+    petOwnershipExperience?: StringNullableFilter<"AdoptionRequest"> | string | null
+    address?: StringFilter<"AdoptionRequest"> | string
+    phoneNumber?: StringFilter<"AdoptionRequest"> | string
+    message?: StringFilter<"AdoptionRequest"> | string
     createdAt?: DateTimeFilter<"AdoptionRequest"> | Date | string
     updatedAt?: DateTimeFilter<"AdoptionRequest"> | Date | string
     userId?: StringFilter<"AdoptionRequest"> | string
@@ -4580,7 +4627,10 @@ export namespace Prisma {
   export type AdoptionRequestOrderByWithRelationInput = {
     id?: SortOrder
     status?: SortOrder
-    petOwnershipExperience?: SortOrder
+    petOwnershipExperience?: SortOrderInput | SortOrder
+    address?: SortOrder
+    phoneNumber?: SortOrder
+    message?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
     userId?: SortOrder
@@ -4595,7 +4645,10 @@ export namespace Prisma {
     OR?: AdoptionRequestWhereInput[]
     NOT?: AdoptionRequestWhereInput | AdoptionRequestWhereInput[]
     status?: EnumadoptionRequestStatusFilter<"AdoptionRequest"> | $Enums.adoptionRequestStatus
-    petOwnershipExperience?: StringFilter<"AdoptionRequest"> | string
+    petOwnershipExperience?: StringNullableFilter<"AdoptionRequest"> | string | null
+    address?: StringFilter<"AdoptionRequest"> | string
+    phoneNumber?: StringFilter<"AdoptionRequest"> | string
+    message?: StringFilter<"AdoptionRequest"> | string
     createdAt?: DateTimeFilter<"AdoptionRequest"> | Date | string
     updatedAt?: DateTimeFilter<"AdoptionRequest"> | Date | string
     userId?: StringFilter<"AdoptionRequest"> | string
@@ -4607,7 +4660,10 @@ export namespace Prisma {
   export type AdoptionRequestOrderByWithAggregationInput = {
     id?: SortOrder
     status?: SortOrder
-    petOwnershipExperience?: SortOrder
+    petOwnershipExperience?: SortOrderInput | SortOrder
+    address?: SortOrder
+    phoneNumber?: SortOrder
+    message?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
     userId?: SortOrder
@@ -4623,7 +4679,10 @@ export namespace Prisma {
     NOT?: AdoptionRequestScalarWhereWithAggregatesInput | AdoptionRequestScalarWhereWithAggregatesInput[]
     id?: StringWithAggregatesFilter<"AdoptionRequest"> | string
     status?: EnumadoptionRequestStatusWithAggregatesFilter<"AdoptionRequest"> | $Enums.adoptionRequestStatus
-    petOwnershipExperience?: StringWithAggregatesFilter<"AdoptionRequest"> | string
+    petOwnershipExperience?: StringNullableWithAggregatesFilter<"AdoptionRequest"> | string | null
+    address?: StringWithAggregatesFilter<"AdoptionRequest"> | string
+    phoneNumber?: StringWithAggregatesFilter<"AdoptionRequest"> | string
+    message?: StringWithAggregatesFilter<"AdoptionRequest"> | string
     createdAt?: DateTimeWithAggregatesFilter<"AdoptionRequest"> | Date | string
     updatedAt?: DateTimeWithAggregatesFilter<"AdoptionRequest"> | Date | string
     userId?: StringWithAggregatesFilter<"AdoptionRequest"> | string
@@ -4858,7 +4917,10 @@ export namespace Prisma {
   export type AdoptionRequestCreateInput = {
     id?: string
     status?: $Enums.adoptionRequestStatus
-    petOwnershipExperience: string
+    petOwnershipExperience?: string | null
+    address: string
+    phoneNumber: string
+    message: string
     createdAt?: Date | string
     updatedAt?: Date | string
     user: UserCreateNestedOneWithoutAdoptionRequestsInput
@@ -4868,7 +4930,10 @@ export namespace Prisma {
   export type AdoptionRequestUncheckedCreateInput = {
     id?: string
     status?: $Enums.adoptionRequestStatus
-    petOwnershipExperience: string
+    petOwnershipExperience?: string | null
+    address: string
+    phoneNumber: string
+    message: string
     createdAt?: Date | string
     updatedAt?: Date | string
     userId: string
@@ -4878,7 +4943,10 @@ export namespace Prisma {
   export type AdoptionRequestUpdateInput = {
     id?: StringFieldUpdateOperationsInput | string
     status?: EnumadoptionRequestStatusFieldUpdateOperationsInput | $Enums.adoptionRequestStatus
-    petOwnershipExperience?: StringFieldUpdateOperationsInput | string
+    petOwnershipExperience?: NullableStringFieldUpdateOperationsInput | string | null
+    address?: StringFieldUpdateOperationsInput | string
+    phoneNumber?: StringFieldUpdateOperationsInput | string
+    message?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     user?: UserUpdateOneRequiredWithoutAdoptionRequestsNestedInput
@@ -4888,7 +4956,10 @@ export namespace Prisma {
   export type AdoptionRequestUncheckedUpdateInput = {
     id?: StringFieldUpdateOperationsInput | string
     status?: EnumadoptionRequestStatusFieldUpdateOperationsInput | $Enums.adoptionRequestStatus
-    petOwnershipExperience?: StringFieldUpdateOperationsInput | string
+    petOwnershipExperience?: NullableStringFieldUpdateOperationsInput | string | null
+    address?: StringFieldUpdateOperationsInput | string
+    phoneNumber?: StringFieldUpdateOperationsInput | string
+    message?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     userId?: StringFieldUpdateOperationsInput | string
@@ -4898,7 +4969,10 @@ export namespace Prisma {
   export type AdoptionRequestCreateManyInput = {
     id?: string
     status?: $Enums.adoptionRequestStatus
-    petOwnershipExperience: string
+    petOwnershipExperience?: string | null
+    address: string
+    phoneNumber: string
+    message: string
     createdAt?: Date | string
     updatedAt?: Date | string
     userId: string
@@ -4908,7 +4982,10 @@ export namespace Prisma {
   export type AdoptionRequestUpdateManyMutationInput = {
     id?: StringFieldUpdateOperationsInput | string
     status?: EnumadoptionRequestStatusFieldUpdateOperationsInput | $Enums.adoptionRequestStatus
-    petOwnershipExperience?: StringFieldUpdateOperationsInput | string
+    petOwnershipExperience?: NullableStringFieldUpdateOperationsInput | string | null
+    address?: StringFieldUpdateOperationsInput | string
+    phoneNumber?: StringFieldUpdateOperationsInput | string
+    message?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
@@ -4916,7 +4993,10 @@ export namespace Prisma {
   export type AdoptionRequestUncheckedUpdateManyInput = {
     id?: StringFieldUpdateOperationsInput | string
     status?: EnumadoptionRequestStatusFieldUpdateOperationsInput | $Enums.adoptionRequestStatus
-    petOwnershipExperience?: StringFieldUpdateOperationsInput | string
+    petOwnershipExperience?: NullableStringFieldUpdateOperationsInput | string | null
+    address?: StringFieldUpdateOperationsInput | string
+    phoneNumber?: StringFieldUpdateOperationsInput | string
+    message?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     userId?: StringFieldUpdateOperationsInput | string
@@ -5183,6 +5263,21 @@ export namespace Prisma {
     not?: NestedEnumadoptionRequestStatusFilter<$PrismaModel> | $Enums.adoptionRequestStatus
   }
 
+  export type StringNullableFilter<$PrismaModel = never> = {
+    equals?: string | StringFieldRefInput<$PrismaModel> | null
+    in?: string[] | ListStringFieldRefInput<$PrismaModel> | null
+    notIn?: string[] | ListStringFieldRefInput<$PrismaModel> | null
+    lt?: string | StringFieldRefInput<$PrismaModel>
+    lte?: string | StringFieldRefInput<$PrismaModel>
+    gt?: string | StringFieldRefInput<$PrismaModel>
+    gte?: string | StringFieldRefInput<$PrismaModel>
+    contains?: string | StringFieldRefInput<$PrismaModel>
+    startsWith?: string | StringFieldRefInput<$PrismaModel>
+    endsWith?: string | StringFieldRefInput<$PrismaModel>
+    mode?: QueryMode
+    not?: NestedStringNullableFilter<$PrismaModel> | string | null
+  }
+
   export type UserRelationFilter = {
     is?: UserWhereInput
     isNot?: UserWhereInput
@@ -5193,10 +5288,18 @@ export namespace Prisma {
     isNot?: PetWhereInput
   }
 
+  export type SortOrderInput = {
+    sort: SortOrder
+    nulls?: NullsOrder
+  }
+
   export type AdoptionRequestCountOrderByAggregateInput = {
     id?: SortOrder
     status?: SortOrder
     petOwnershipExperience?: SortOrder
+    address?: SortOrder
+    phoneNumber?: SortOrder
+    message?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
     userId?: SortOrder
@@ -5207,6 +5310,9 @@ export namespace Prisma {
     id?: SortOrder
     status?: SortOrder
     petOwnershipExperience?: SortOrder
+    address?: SortOrder
+    phoneNumber?: SortOrder
+    message?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
     userId?: SortOrder
@@ -5217,6 +5323,9 @@ export namespace Prisma {
     id?: SortOrder
     status?: SortOrder
     petOwnershipExperience?: SortOrder
+    address?: SortOrder
+    phoneNumber?: SortOrder
+    message?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
     userId?: SortOrder
@@ -5231,6 +5340,24 @@ export namespace Prisma {
     _count?: NestedIntFilter<$PrismaModel>
     _min?: NestedEnumadoptionRequestStatusFilter<$PrismaModel>
     _max?: NestedEnumadoptionRequestStatusFilter<$PrismaModel>
+  }
+
+  export type StringNullableWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: string | StringFieldRefInput<$PrismaModel> | null
+    in?: string[] | ListStringFieldRefInput<$PrismaModel> | null
+    notIn?: string[] | ListStringFieldRefInput<$PrismaModel> | null
+    lt?: string | StringFieldRefInput<$PrismaModel>
+    lte?: string | StringFieldRefInput<$PrismaModel>
+    gt?: string | StringFieldRefInput<$PrismaModel>
+    gte?: string | StringFieldRefInput<$PrismaModel>
+    contains?: string | StringFieldRefInput<$PrismaModel>
+    startsWith?: string | StringFieldRefInput<$PrismaModel>
+    endsWith?: string | StringFieldRefInput<$PrismaModel>
+    mode?: QueryMode
+    not?: NestedStringNullableWithAggregatesFilter<$PrismaModel> | string | null
+    _count?: NestedIntNullableFilter<$PrismaModel>
+    _min?: NestedStringNullableFilter<$PrismaModel>
+    _max?: NestedStringNullableFilter<$PrismaModel>
   }
 
   export type AdoptionRequestCreateNestedManyWithoutUserInput = {
@@ -5368,6 +5495,10 @@ export namespace Prisma {
 
   export type EnumadoptionRequestStatusFieldUpdateOperationsInput = {
     set?: $Enums.adoptionRequestStatus
+  }
+
+  export type NullableStringFieldUpdateOperationsInput = {
+    set?: string | null
   }
 
   export type UserUpdateOneRequiredWithoutAdoptionRequestsNestedInput = {
@@ -5538,6 +5669,20 @@ export namespace Prisma {
     not?: NestedEnumadoptionRequestStatusFilter<$PrismaModel> | $Enums.adoptionRequestStatus
   }
 
+  export type NestedStringNullableFilter<$PrismaModel = never> = {
+    equals?: string | StringFieldRefInput<$PrismaModel> | null
+    in?: string[] | ListStringFieldRefInput<$PrismaModel> | null
+    notIn?: string[] | ListStringFieldRefInput<$PrismaModel> | null
+    lt?: string | StringFieldRefInput<$PrismaModel>
+    lte?: string | StringFieldRefInput<$PrismaModel>
+    gt?: string | StringFieldRefInput<$PrismaModel>
+    gte?: string | StringFieldRefInput<$PrismaModel>
+    contains?: string | StringFieldRefInput<$PrismaModel>
+    startsWith?: string | StringFieldRefInput<$PrismaModel>
+    endsWith?: string | StringFieldRefInput<$PrismaModel>
+    not?: NestedStringNullableFilter<$PrismaModel> | string | null
+  }
+
   export type NestedEnumadoptionRequestStatusWithAggregatesFilter<$PrismaModel = never> = {
     equals?: $Enums.adoptionRequestStatus | EnumadoptionRequestStatusFieldRefInput<$PrismaModel>
     in?: $Enums.adoptionRequestStatus[] | ListEnumadoptionRequestStatusFieldRefInput<$PrismaModel>
@@ -5548,10 +5693,41 @@ export namespace Prisma {
     _max?: NestedEnumadoptionRequestStatusFilter<$PrismaModel>
   }
 
+  export type NestedStringNullableWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: string | StringFieldRefInput<$PrismaModel> | null
+    in?: string[] | ListStringFieldRefInput<$PrismaModel> | null
+    notIn?: string[] | ListStringFieldRefInput<$PrismaModel> | null
+    lt?: string | StringFieldRefInput<$PrismaModel>
+    lte?: string | StringFieldRefInput<$PrismaModel>
+    gt?: string | StringFieldRefInput<$PrismaModel>
+    gte?: string | StringFieldRefInput<$PrismaModel>
+    contains?: string | StringFieldRefInput<$PrismaModel>
+    startsWith?: string | StringFieldRefInput<$PrismaModel>
+    endsWith?: string | StringFieldRefInput<$PrismaModel>
+    not?: NestedStringNullableWithAggregatesFilter<$PrismaModel> | string | null
+    _count?: NestedIntNullableFilter<$PrismaModel>
+    _min?: NestedStringNullableFilter<$PrismaModel>
+    _max?: NestedStringNullableFilter<$PrismaModel>
+  }
+
+  export type NestedIntNullableFilter<$PrismaModel = never> = {
+    equals?: number | IntFieldRefInput<$PrismaModel> | null
+    in?: number[] | ListIntFieldRefInput<$PrismaModel> | null
+    notIn?: number[] | ListIntFieldRefInput<$PrismaModel> | null
+    lt?: number | IntFieldRefInput<$PrismaModel>
+    lte?: number | IntFieldRefInput<$PrismaModel>
+    gt?: number | IntFieldRefInput<$PrismaModel>
+    gte?: number | IntFieldRefInput<$PrismaModel>
+    not?: NestedIntNullableFilter<$PrismaModel> | number | null
+  }
+
   export type AdoptionRequestCreateWithoutUserInput = {
     id?: string
     status?: $Enums.adoptionRequestStatus
-    petOwnershipExperience: string
+    petOwnershipExperience?: string | null
+    address: string
+    phoneNumber: string
+    message: string
     createdAt?: Date | string
     updatedAt?: Date | string
     pet: PetCreateNestedOneWithoutAdoptionRequestsInput
@@ -5560,7 +5736,10 @@ export namespace Prisma {
   export type AdoptionRequestUncheckedCreateWithoutUserInput = {
     id?: string
     status?: $Enums.adoptionRequestStatus
-    petOwnershipExperience: string
+    petOwnershipExperience?: string | null
+    address: string
+    phoneNumber: string
+    message: string
     createdAt?: Date | string
     updatedAt?: Date | string
     petId: string
@@ -5598,7 +5777,10 @@ export namespace Prisma {
     NOT?: AdoptionRequestScalarWhereInput | AdoptionRequestScalarWhereInput[]
     id?: StringFilter<"AdoptionRequest"> | string
     status?: EnumadoptionRequestStatusFilter<"AdoptionRequest"> | $Enums.adoptionRequestStatus
-    petOwnershipExperience?: StringFilter<"AdoptionRequest"> | string
+    petOwnershipExperience?: StringNullableFilter<"AdoptionRequest"> | string | null
+    address?: StringFilter<"AdoptionRequest"> | string
+    phoneNumber?: StringFilter<"AdoptionRequest"> | string
+    message?: StringFilter<"AdoptionRequest"> | string
     createdAt?: DateTimeFilter<"AdoptionRequest"> | Date | string
     updatedAt?: DateTimeFilter<"AdoptionRequest"> | Date | string
     userId?: StringFilter<"AdoptionRequest"> | string
@@ -5608,7 +5790,10 @@ export namespace Prisma {
   export type AdoptionRequestCreateWithoutPetInput = {
     id?: string
     status?: $Enums.adoptionRequestStatus
-    petOwnershipExperience: string
+    petOwnershipExperience?: string | null
+    address: string
+    phoneNumber: string
+    message: string
     createdAt?: Date | string
     updatedAt?: Date | string
     user: UserCreateNestedOneWithoutAdoptionRequestsInput
@@ -5617,7 +5802,10 @@ export namespace Prisma {
   export type AdoptionRequestUncheckedCreateWithoutPetInput = {
     id?: string
     status?: $Enums.adoptionRequestStatus
-    petOwnershipExperience: string
+    petOwnershipExperience?: string | null
+    address: string
+    phoneNumber: string
+    message: string
     createdAt?: Date | string
     updatedAt?: Date | string
     userId: string
@@ -5808,7 +5996,10 @@ export namespace Prisma {
   export type AdoptionRequestCreateManyUserInput = {
     id?: string
     status?: $Enums.adoptionRequestStatus
-    petOwnershipExperience: string
+    petOwnershipExperience?: string | null
+    address: string
+    phoneNumber: string
+    message: string
     createdAt?: Date | string
     updatedAt?: Date | string
     petId: string
@@ -5817,7 +6008,10 @@ export namespace Prisma {
   export type AdoptionRequestUpdateWithoutUserInput = {
     id?: StringFieldUpdateOperationsInput | string
     status?: EnumadoptionRequestStatusFieldUpdateOperationsInput | $Enums.adoptionRequestStatus
-    petOwnershipExperience?: StringFieldUpdateOperationsInput | string
+    petOwnershipExperience?: NullableStringFieldUpdateOperationsInput | string | null
+    address?: StringFieldUpdateOperationsInput | string
+    phoneNumber?: StringFieldUpdateOperationsInput | string
+    message?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     pet?: PetUpdateOneRequiredWithoutAdoptionRequestsNestedInput
@@ -5826,7 +6020,10 @@ export namespace Prisma {
   export type AdoptionRequestUncheckedUpdateWithoutUserInput = {
     id?: StringFieldUpdateOperationsInput | string
     status?: EnumadoptionRequestStatusFieldUpdateOperationsInput | $Enums.adoptionRequestStatus
-    petOwnershipExperience?: StringFieldUpdateOperationsInput | string
+    petOwnershipExperience?: NullableStringFieldUpdateOperationsInput | string | null
+    address?: StringFieldUpdateOperationsInput | string
+    phoneNumber?: StringFieldUpdateOperationsInput | string
+    message?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     petId?: StringFieldUpdateOperationsInput | string
@@ -5835,7 +6032,10 @@ export namespace Prisma {
   export type AdoptionRequestUncheckedUpdateManyWithoutUserInput = {
     id?: StringFieldUpdateOperationsInput | string
     status?: EnumadoptionRequestStatusFieldUpdateOperationsInput | $Enums.adoptionRequestStatus
-    petOwnershipExperience?: StringFieldUpdateOperationsInput | string
+    petOwnershipExperience?: NullableStringFieldUpdateOperationsInput | string | null
+    address?: StringFieldUpdateOperationsInput | string
+    phoneNumber?: StringFieldUpdateOperationsInput | string
+    message?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     petId?: StringFieldUpdateOperationsInput | string
@@ -5844,7 +6044,10 @@ export namespace Prisma {
   export type AdoptionRequestCreateManyPetInput = {
     id?: string
     status?: $Enums.adoptionRequestStatus
-    petOwnershipExperience: string
+    petOwnershipExperience?: string | null
+    address: string
+    phoneNumber: string
+    message: string
     createdAt?: Date | string
     updatedAt?: Date | string
     userId: string
@@ -5853,7 +6056,10 @@ export namespace Prisma {
   export type AdoptionRequestUpdateWithoutPetInput = {
     id?: StringFieldUpdateOperationsInput | string
     status?: EnumadoptionRequestStatusFieldUpdateOperationsInput | $Enums.adoptionRequestStatus
-    petOwnershipExperience?: StringFieldUpdateOperationsInput | string
+    petOwnershipExperience?: NullableStringFieldUpdateOperationsInput | string | null
+    address?: StringFieldUpdateOperationsInput | string
+    phoneNumber?: StringFieldUpdateOperationsInput | string
+    message?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     user?: UserUpdateOneRequiredWithoutAdoptionRequestsNestedInput
@@ -5862,7 +6068,10 @@ export namespace Prisma {
   export type AdoptionRequestUncheckedUpdateWithoutPetInput = {
     id?: StringFieldUpdateOperationsInput | string
     status?: EnumadoptionRequestStatusFieldUpdateOperationsInput | $Enums.adoptionRequestStatus
-    petOwnershipExperience?: StringFieldUpdateOperationsInput | string
+    petOwnershipExperience?: NullableStringFieldUpdateOperationsInput | string | null
+    address?: StringFieldUpdateOperationsInput | string
+    phoneNumber?: StringFieldUpdateOperationsInput | string
+    message?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     userId?: StringFieldUpdateOperationsInput | string
@@ -5871,7 +6080,10 @@ export namespace Prisma {
   export type AdoptionRequestUncheckedUpdateManyWithoutPetInput = {
     id?: StringFieldUpdateOperationsInput | string
     status?: EnumadoptionRequestStatusFieldUpdateOperationsInput | $Enums.adoptionRequestStatus
-    petOwnershipExperience?: StringFieldUpdateOperationsInput | string
+    petOwnershipExperience?: NullableStringFieldUpdateOperationsInput | string | null
+    address?: StringFieldUpdateOperationsInput | string
+    phoneNumber?: StringFieldUpdateOperationsInput | string
+    message?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     userId?: StringFieldUpdateOperationsInput | string

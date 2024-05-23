@@ -12,10 +12,13 @@ auth(),
 validateRequest(AdoptionRequestValidations.createAdoptionRequest),
 AdoptionRequestControllers.createAdoptionRequest
 )
+
+
 router.get("/",
 auth(),
 AdoptionRequestControllers.getAllAdoptionRequests
 )
+
 
 router.put("/:id",
 auth(),
