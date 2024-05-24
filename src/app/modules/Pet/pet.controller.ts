@@ -20,9 +20,9 @@ const createPet = catchAsync(async (req, res) => {
 })
 
 const uploadMultiplePhotos = catchAsync(async (req, res) => {
-   const id = req.body.id
+    const id = req.body.id
     const files = req.files
-    const result = await PetServices.uploadMultiplePhotos(files,id);
+    const result = await PetServices.uploadMultiplePhotos(files, id);
     sendResponse(res, {
         success: true,
         message: "Multiple Photo Uploaded Successfully",
@@ -49,6 +49,20 @@ const getAllPets = catchAsync(async (req, res) => {
 })
 
 
+const getSinglePet = catchAsync(async (req, res) => {
+
+    const id = req.params.id
+    const result = await PetServices.getSinglePet(id);
+    sendResponse(res, {
+        success: true,
+        message: "Pet is retrieved successfully",
+        statusCode: httpStatus.OK,
+        data: result
+    })
+
+})
+
+
 const updateSinglePet = catchAsync(async (req, res) => {
 
     const id = req.params.id;
@@ -65,7 +79,7 @@ const updateSinglePet = catchAsync(async (req, res) => {
 const deleteSinglePet = catchAsync(async (req, res) => {
 
     const id = req.params.id;
-  
+
     const result = await PetServices.deleteSinglePet(id);
     sendResponse(res, {
         success: true,
@@ -80,6 +94,7 @@ const deleteSinglePet = catchAsync(async (req, res) => {
 
 export const PetControllers = {
     getAllPets,
+    getSinglePet,
     createPet,
     updateSinglePet,
     uploadMultiplePhotos,

@@ -70,7 +70,6 @@ await prisma.pet.findUniqueOrThrow({
 
 
 const getAllPet = async (params: any, options: IPaginationOptions, query: Record<string, string>) => {
-    console.log({ query });
     const { searchTerm, ...filterData } = params;
 
     const { limit, page, sortBy, sortOrder, skip } = paginationHelper.calculatePagination(options)
@@ -137,6 +136,18 @@ const getAllPet = async (params: any, options: IPaginationOptions, query: Record
     }
 }
 
+
+const getSinglePet = async(id:string)=>{
+    const result = await prisma.pet.findUniqueOrThrow({
+        where:{
+            id
+        }
+    })
+    return result
+}
+
+
+
 const updateSinglePet = async (id: string, data: Partial<Pet>) => {
 
     await prisma.pet.findUniqueOrThrow({
@@ -176,6 +187,7 @@ const deleteSinglePet = async (id: string) => {
 
 export const PetServices = {
     getAllPet,
+    getSinglePet,
     createPet,
     updateSinglePet,
     uploadMultiplePhotos,
