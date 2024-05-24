@@ -25,7 +25,7 @@ PetControllers.uploadMultiplePhotos
 
 )
 
-router.get("/",auth("admin"), PetControllers.getAllPets);
+router.get("/",auth(), PetControllers.getAllPets);
 router.put("/:id",auth("admin"),validateRequest(PetValidations.updatePet), PetControllers.updateSinglePet);
 
 
