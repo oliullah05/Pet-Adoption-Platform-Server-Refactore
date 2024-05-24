@@ -20,6 +20,7 @@ validateRequest(PetValidations.createPet),
 PetControllers.createPet);
 
 router.post("/upload-multiple-photos",
+auth("admin"),
 upload.array("files"),
 PetControllers.uploadMultiplePhotos
 
