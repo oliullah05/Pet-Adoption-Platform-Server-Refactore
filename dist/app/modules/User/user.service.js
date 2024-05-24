@@ -37,12 +37,12 @@ const createUser = (payload) => __awaiter(void 0, void 0, void 0, function* () {
         }
     });
     if (isUserExits) {
-        throw new ApiError_1.default(http_status_1.default.BAD_REQUEST, "User alrady registered");
+        throw new ApiError_1.default(http_status_1.default.BAD_REQUEST, "User alrady registered, Please Login");
     }
     const hashedPassword = yield bcrypt_1.default.hash(payload.password, 12);
     const userData = {
-        name: payload.name,
-        email: payload.email,
+        name: payload.name.trim(),
+        email: payload.email.trim(),
         password: hashedPassword,
     };
     const result = yield prisma_1.default.user.create({
@@ -111,23 +111,7 @@ const getAllUser = (params, options) => __awaiter(void 0, void 0, void 0, functi
         data: result
     };
 });
-const getMe = (email) => __awaiter(void 0, void 0, void 0, function* () {
-    const result = yield prisma_1.default.user.findUniqueOrThrow({
-        where: {
-            email
-        },
-        select: {
-            id: true,
-            name: true,
-            email: true,
-            createdAt: true,
-            updatedAt: true
-        }
-    });
-    return result;
-});
 exports.UserServices = {
     getAllUser,
     createUser,
-    getMe
 };

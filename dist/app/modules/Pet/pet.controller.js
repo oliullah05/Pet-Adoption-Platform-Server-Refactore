@@ -20,8 +20,9 @@ const pet_service_1 = require("./pet.service");
 const pick_1 = __importDefault(require("../../shared/pick"));
 const pet_const_1 = require("./pet.const");
 const createPet = (0, catchAsync_1.default)((req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    const file = req.file;
     const petData = req.body;
-    const result = yield pet_service_1.PetServices.createPet(petData);
+    const result = yield pet_service_1.PetServices.createPet(petData, file);
     (0, sendResponse_1.default)(res, {
         success: true,
         message: "Pet added successfully",
@@ -29,10 +30,21 @@ const createPet = (0, catchAsync_1.default)((req, res) => __awaiter(void 0, void
         data: result
     });
 }));
+const uploadMultiplePhotos = (0, catchAsync_1.default)((req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    const id = req.body.id;
+    const files = req.files;
+    const result = yield pet_service_1.PetServices.uploadMultiplePhotos(files, id);
+    (0, sendResponse_1.default)(res, {
+        success: true,
+        message: "Multiple Photo Uploaded Successfully",
+        statusCode: http_status_1.default.CREATED,
+        data: result
+    });
+}));
 const getAllPets = (0, catchAsync_1.default)((req, res) => __awaiter(void 0, void 0, void 0, function* () {
     const filters = (0, pick_1.default)(req.query, pet_const_1.petFilterableFields);
-    const options = (0, pick_1.default)(req.query, ['page', "limit", "sortBy", "sortOrder"]);
-    const result = yield pet_service_1.PetServices.getAllPet(filters, options);
+    const options = (0, pick_1.default)(req.query, ['page', "limit", "sortBy", "sortOrder", "age"]);
+    const result = yield pet_service_1.PetServices.getAllPet(filters, options, req.query);
     (0, sendResponse_1.default)(res, {
         success: true,
         message: "Pets retrieved successfully",
@@ -55,5 +67,6 @@ const updateSinglePet = (0, catchAsync_1.default)((req, res) => __awaiter(void 0
 exports.PetControllers = {
     getAllPets,
     createPet,
-    updateSinglePet
+    updateSinglePet,
+    uploadMultiplePhotos
 };

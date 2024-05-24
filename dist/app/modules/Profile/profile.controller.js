@@ -29,12 +29,9 @@ const getMe = (0, catchAsync_1.default)((req, res) => __awaiter(void 0, void 0, 
     });
 }));
 const updateMe = (0, catchAsync_1.default)((req, res) => __awaiter(void 0, void 0, void 0, function* () {
-    // if(Object.keys(req.body).length<0){
-    //     throw new ApiError(500,"For update give some data first!!")
-    // }
     const id = req.user.id;
     const data = (0, pick_1.default)(req.body, ["name", "email"]);
-    const result = yield profile_service_1.ProfileServices.updateMe(id, data);
+    const result = yield profile_service_1.ProfileServices.updateMe(data, id);
     (0, sendResponse_1.default)(res, {
         success: true,
         message: "User profile updated successfully",
@@ -42,7 +39,31 @@ const updateMe = (0, catchAsync_1.default)((req, res) => __awaiter(void 0, void 
         data: result
     });
 }));
+const changeUserRole = (0, catchAsync_1.default)((req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    const id = req.params.id;
+    const data = (0, pick_1.default)(req.body, ["role"]);
+    const result = yield profile_service_1.ProfileServices.changeUserRole(id, data === null || data === void 0 ? void 0 : data.role);
+    (0, sendResponse_1.default)(res, {
+        success: true,
+        message: "User role updated successfully",
+        statusCode: http_status_1.default.OK,
+        data: result
+    });
+}));
+const changeUserStatus = (0, catchAsync_1.default)((req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    const id = req.params.id;
+    const data = (0, pick_1.default)(req.body, ["status"]);
+    const result = yield profile_service_1.ProfileServices.changeUserStatus(id, data === null || data === void 0 ? void 0 : data.status);
+    (0, sendResponse_1.default)(res, {
+        success: true,
+        message: "User status updated successfully",
+        statusCode: http_status_1.default.OK,
+        data: result
+    });
+}));
 exports.ProfileControllers = {
     getMe,
-    updateMe
+    updateMe,
+    changeUserRole,
+    changeUserStatus
 };

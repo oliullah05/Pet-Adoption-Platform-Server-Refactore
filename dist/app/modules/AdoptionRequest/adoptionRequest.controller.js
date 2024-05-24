@@ -50,8 +50,19 @@ const updateAdoptionRequests = (0, catchAsync_1.default)((req, res) => __awaiter
         data: result
     });
 }));
+const myAdoptionRequest = (0, catchAsync_1.default)((req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    const id = req.user.id;
+    const result = yield adoptionRequest_service_1.AdoptionRequestServices.myAdoptionRequest(id);
+    (0, sendResponse_1.default)(res, {
+        success: true,
+        message: "My Adoption request retrieved successfully",
+        statusCode: http_status_1.default.OK,
+        data: result
+    });
+}));
 exports.AdoptionRequestControllers = {
     createAdoptionRequest,
     getAllAdoptionRequests,
-    updateAdoptionRequests
+    updateAdoptionRequests,
+    myAdoptionRequest
 };

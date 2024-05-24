@@ -46,8 +46,6 @@ const changePassword = async(user:any,payload:{oldPassword:string,newPassword:st
 
 // check old password is correct
 
-
-// later
 const isPasswordMatced = await bcrypt.compare(payload.oldPassword, userData.password);
 
 if(!isPasswordMatced){

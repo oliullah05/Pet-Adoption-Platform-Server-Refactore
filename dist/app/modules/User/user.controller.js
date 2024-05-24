@@ -41,18 +41,7 @@ const getAllUser = (0, catchAsync_1.default)((req, res) => __awaiter(void 0, voi
         data: result.data
     });
 }));
-const getMe = (0, catchAsync_1.default)((req, res) => __awaiter(void 0, void 0, void 0, function* () {
-    const email = req.user.email;
-    const result = yield user_service_1.UserServices.getMe(email);
-    (0, sendResponse_1.default)(res, {
-        success: true,
-        message: "User profile retrieved successfully",
-        statusCode: http_status_1.default.OK,
-        data: result
-    });
-}));
 exports.UserControllers = {
     getAllUser,
-    createUser,
-    getMe
+    createUser
 };

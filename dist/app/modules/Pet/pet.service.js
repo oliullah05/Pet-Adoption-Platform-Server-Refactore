@@ -24,16 +24,58 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.PetServices = void 0;
-const prisma_1 = __importDefault(require("../../shared/prisma"));
 const paginationHelpers_1 = require("../../helpers/paginationHelpers");
+const prisma_1 = __importDefault(require("../../shared/prisma"));
 const pet_const_1 = require("./pet.const");
-const createPet = (payload) => __awaiter(void 0, void 0, void 0, function* () {
+const fileUploader_1 = require("../../helpers/fileUploader");
+const ApiError_1 = __importDefault(require("../../errors/ApiError"));
+const createPet = (payload, file) => __awaiter(void 0, void 0, void 0, function* () {
+    if (file) {
+        const path = file === null || file === void 0 ? void 0 : file.path;
+        const imageName = `${Date.now().toString()} ${payload === null || payload === void 0 ? void 0 : payload.name}`;
+        //send image to cloudinary
+        const { secure_url } = yield (0, fileUploader_1.sendImageToCloudinary)(imageName, path);
+        payload.bannerPhoto = secure_url;
+        console.log({ payload });
+    }
     const result = yield prisma_1.default.pet.create({
         data: payload,
     });
     return result;
 });
-const getAllPet = (params, options) => __awaiter(void 0, void 0, void 0, function* () {
+const uploadMultiplePhotos = (files, id) => __awaiter(void 0, void 0, void 0, function* () {
+    yield prisma_1.default.pet.findUniqueOrThrow({
+        where: {
+            id
+        }
+    });
+    if (!files || files.length <= 0) {
+        throw new ApiError_1.default(404, "Multiple photos/files not found");
+    }
+    const multiplePhotos = [];
+    // Using for...of loop to ensure await works properly
+    for (const file of files) {
+        const path = file === null || file === void 0 ? void 0 : file.path;
+        const imageName = `${Date.now().toString()} ${file.originalname} + ${Math.round(Math.random() * 1e9)}`;
+        // send image to cloudinary
+        const { secure_url } = yield (0, fileUploader_1.sendImageToCloudinary)(imageName, path);
+        multiplePhotos.push(secure_url);
+    }
+    const updatedPet = yield prisma_1.default.pet.update({
+        where: {
+            id
+        },
+        data: {
+            multiplePhotos
+        }
+    });
+    return {
+        multiplePhotos,
+        updatedPet
+    };
+});
+const getAllPet = (params, options, query) => __awaiter(void 0, void 0, void 0, function* () {
+    console.log({ query });
     const { searchTerm } = params, filterData = __rest(params, ["searchTerm"]);
     const { limit, page, sortBy, sortOrder, skip } = paginationHelpers_1.paginationHelper.calculatePagination(options);
     const andConditions = [];
@@ -47,11 +89,18 @@ const getAllPet = (params, options) => __awaiter(void 0, void 0, void 0, functio
             }))
         });
     }
+    if (query === null || query === void 0 ? void 0 : query.age) {
+        andConditions.push({
+            age: {
+                equals: parseInt(query === null || query === void 0 ? void 0 : query.age)
+            }
+        });
+    }
     if (Object.keys(filterData).length > 0) {
         andConditions.push({
             AND: Object.keys(filterData).map(key => ({
                 [key]: {
-                    equals: filterData[key]
+                    equals: filterData[key],
                 }
             }))
         });
@@ -75,8 +124,7 @@ const getAllPet = (params, options) => __awaiter(void 0, void 0, void 0, functio
         meta: {
             page,
             limit,
-            total,
-            showData: result.length
+            total
         },
         data: result
     };
@@ -98,5 +146,6 @@ const updateSinglePet = (id, data) => __awaiter(void 0, void 0, void 0, function
 exports.PetServices = {
     getAllPet,
     createPet,
-    updateSinglePet
+    updateSinglePet,
+    uploadMultiplePhotos
 };

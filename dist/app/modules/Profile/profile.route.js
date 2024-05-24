@@ -12,4 +12,6 @@ const profile_validation_1 = require("./profile.validation");
 const router = express_1.default.Router();
 router.get("/", (0, auth_1.default)(), profile_controller_1.ProfileControllers.getMe);
 router.put("/", (0, auth_1.default)(), (0, validateRequest_1.default)(profile_validation_1.ProfileValidations.updateMe), profile_controller_1.ProfileControllers.updateMe);
+router.post("/change-role/:id", (0, auth_1.default)("admin"), (0, validateRequest_1.default)(profile_validation_1.ProfileValidations.changeUserRole), profile_controller_1.ProfileControllers.changeUserRole);
+router.post("/change-status/:id", (0, auth_1.default)("admin"), (0, validateRequest_1.default)(profile_validation_1.ProfileValidations.changeUserStatus), profile_controller_1.ProfileControllers.changeUserStatus);
 exports.ProfileRoutes = router;

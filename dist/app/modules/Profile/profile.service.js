@@ -22,6 +22,8 @@ const getMe = (id) => __awaiter(void 0, void 0, void 0, function* () {
         select: {
             id: true,
             name: true,
+            role: true,
+            status: true,
             email: true,
             createdAt: true,
             updatedAt: true
@@ -29,7 +31,7 @@ const getMe = (id) => __awaiter(void 0, void 0, void 0, function* () {
     });
     return result;
 });
-const updateMe = (id, data) => __awaiter(void 0, void 0, void 0, function* () {
+const updateMe = (payload, id) => __awaiter(void 0, void 0, void 0, function* () {
     yield prisma_1.default.user.findUniqueOrThrow({
         where: {
             id
@@ -39,11 +41,63 @@ const updateMe = (id, data) => __awaiter(void 0, void 0, void 0, function* () {
         where: {
             id
         },
-        data,
+        data: payload,
+        select: {
+            id: true,
+            name: true,
+            role: true,
+            status: true,
+            email: true,
+            createdAt: true,
+            updatedAt: true
+        }
+    });
+    return result;
+});
+const changeUserRole = (id, role) => __awaiter(void 0, void 0, void 0, function* () {
+    yield prisma_1.default.user.findUniqueOrThrow({
+        where: {
+            id
+        }
+    });
+    const result = yield prisma_1.default.user.update({
+        where: {
+            id
+        },
+        data: {
+            role
+        },
         select: {
             id: true,
             name: true,
             email: true,
+            status: true,
+            role: true,
+            createdAt: true,
+            updatedAt: true
+        }
+    });
+    return result;
+});
+const changeUserStatus = (id, status) => __awaiter(void 0, void 0, void 0, function* () {
+    yield prisma_1.default.user.findUniqueOrThrow({
+        where: {
+            id
+        }
+    });
+    const result = yield prisma_1.default.user.update({
+        where: {
+            id
+        },
+        data: {
+            status
+        },
+        select: {
+            id: true,
+            name: true,
+            email: true,
+            status: true,
+            role: true,
             createdAt: true,
             updatedAt: true
         }
@@ -52,5 +106,7 @@ const updateMe = (id, data) => __awaiter(void 0, void 0, void 0, function* () {
 });
 exports.ProfileServices = {
     getMe,
-    updateMe
+    updateMe,
+    changeUserRole,
+    changeUserStatus
 };

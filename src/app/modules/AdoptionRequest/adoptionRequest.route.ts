@@ -15,13 +15,13 @@ AdoptionRequestControllers.createAdoptionRequest
 
 
 router.get("/",
-auth(),
+auth("admin"),
 AdoptionRequestControllers.getAllAdoptionRequests
 )
 
 
 router.put("/:id",
-auth(),
+auth("admin"),
 validateRequest(AdoptionRequestValidations.updateAdoptionRequest),
 AdoptionRequestControllers.updateAdoptionRequests
 )

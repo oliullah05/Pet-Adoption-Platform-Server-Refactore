@@ -45,12 +45,26 @@ const updateAdoptionRequests = (id, data) => __awaiter(void 0, void 0, void 0, f
         where: {
             id
         },
-        data: data
+        data
+    });
+    return result;
+});
+const myAdoptionRequest = (id) => __awaiter(void 0, void 0, void 0, function* () {
+    yield prisma_1.default.user.findUniqueOrThrow({
+        where: {
+            id
+        }
+    });
+    const result = yield prisma_1.default.adoptionRequest.findMany({
+        where: {
+            userId: id
+        }
     });
     return result;
 });
 exports.AdoptionRequestServices = {
     createAdoptionRequest,
     getAllAdoptionRequests,
-    updateAdoptionRequests
+    updateAdoptionRequests,
+    myAdoptionRequest
 };

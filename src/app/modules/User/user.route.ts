@@ -8,7 +8,7 @@ import auth from "../../middlewars/auth";
 const router = express.Router();
 
 
-router.get("/user",UserControllers.getAllUser);
+router.get("/user",auth("admin"), UserControllers.getAllUser);
 router.post("/register",validateRequest(UserValidations.createUser), UserControllers.createUser);
 
 

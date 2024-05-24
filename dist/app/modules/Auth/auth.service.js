@@ -14,28 +14,56 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.AuthServices = void 0;
 const config_1 = __importDefault(require("../../config"));
+const ApiError_1 = __importDefault(require("../../errors/ApiError"));
 const jwtHelpers_1 = require("../../helpers/jwtHelpers");
 const prisma_1 = __importDefault(require("../../shared/prisma"));
 const bcrypt_1 = __importDefault(require("bcrypt"));
 const loginUser = (payload) => __awaiter(void 0, void 0, void 0, function* () {
-    const userData = yield prisma_1.default.user.findUniqueOrThrow({
+    const userData = yield prisma_1.default.user.findFirstOrThrow({
         where: {
-            email: payload.email
-        }
+            OR: [
+                { email: payload.emailOrName },
+                { name: payload.emailOrName }
+            ]
+        },
     });
     const isCorrectPassword = yield bcrypt_1.default.compare(payload.password, userData.password);
     if (!isCorrectPassword) {
-        throw new Error("Password incorrect");
+        throw new ApiError_1.default(400, "Password incorrect");
     }
-    const jwtPayload = { email: userData.email, id: userData.id };
+    const jwtPayload = { email: userData.email, id: userData.id, role: userData.role };
     const accessToken = jwtHelpers_1.jwtHelpers.genarateToken(jwtPayload, config_1.default.jwt.jwt_access_secret, config_1.default.jwt.jwt_access_expaire_in);
     return {
         id: userData.id,
         name: userData.name,
         email: userData.email,
+        role: userData.role,
         token: accessToken,
     };
 });
+const changePassword = (user, payload) => __awaiter(void 0, void 0, void 0, function* () {
+    const userData = yield prisma_1.default.user.findUniqueOrThrow({
+        where: {
+            id: user.id
+        }
+    });
+    // check old password is correct
+    const isPasswordMatced = yield bcrypt_1.default.compare(payload.oldPassword, userData.password);
+    if (!isPasswordMatced) {
+        throw new ApiError_1.default(404, "Password do not match");
+    }
+    const hashNewPassword = yield bcrypt_1.default.hash(payload.newPassword, Number(process.env.BCRYPT_SALT_ROUND));
+    yield prisma_1.default.user.update({
+        where: {
+            id: user.id
+        },
+        data: {
+            password: hashNewPassword
+        }
+    });
+    return null;
+});
 exports.AuthServices = {
-    loginUser
+    loginUser,
+    changePassword
 };
