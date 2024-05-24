@@ -154,12 +154,31 @@ const updateSinglePet = async (id: string, data: Partial<Pet>) => {
     return result
 }
 
+const deleteSinglePet = async (id: string) => {
+
+    await prisma.pet.findUniqueOrThrow({
+        where: {
+            id
+        }
+    })
+
+    const result = await prisma.pet.delete({
+        where: {
+            id
+        },
+
+    })
+
+    return result
+}
+
 
 
 export const PetServices = {
     getAllPet,
     createPet,
     updateSinglePet,
-    uploadMultiplePhotos
+    uploadMultiplePhotos,
+    deleteSinglePet
 
 }

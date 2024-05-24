@@ -62,6 +62,19 @@ const updateSinglePet = catchAsync(async (req, res) => {
     })
 
 })
+const deleteSinglePet = catchAsync(async (req, res) => {
+
+    const id = req.params.id;
+  
+    const result = await PetServices.deleteSinglePet(id);
+    sendResponse(res, {
+        success: true,
+        message: "Pet deleted successfully",
+        statusCode: httpStatus.OK,
+        data: result
+    })
+
+})
 
 
 
@@ -69,5 +82,6 @@ export const PetControllers = {
     getAllPets,
     createPet,
     updateSinglePet,
-    uploadMultiplePhotos
+    uploadMultiplePhotos,
+    deleteSinglePet
 }
