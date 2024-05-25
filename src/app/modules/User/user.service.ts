@@ -93,6 +93,8 @@ const getAllUser = async (params: any, options: IPaginationOptions) => {
             id: true,
             email: true,
             name: true,
+            role:true,
+            status:true,
             createdAt: true,
             updatedAt: true,
         }
