@@ -32,11 +32,12 @@ const createPet = z.object({
     location: z.string({ required_error: "Location is required" }),
     healthStatus: z.string({ required_error: "Health Status is required" }),
     description: z.string({ required_error: "Description is required" }),
-    temperament: z.string({ required_error: "Temperament is required" }),
-    medicalHistory: z.string({ required_error: "Medical History is required" }),
-    adoptionRequirements: z.string({ required_error: "Adoption Requirements are required" })
+    temperament: z.string({ required_error: "Temperament is required" }).optional(),
+    medicalHistory: z.string({ required_error: "Medical History is required" }).optional(),
+    adoptionRequirements: z.string({ required_error: "Adoption Requirements are required" }).optional()
   })
 });
+
 
 
 const updatePet = z.object({

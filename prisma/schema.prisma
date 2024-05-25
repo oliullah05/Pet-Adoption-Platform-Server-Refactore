@@ -51,9 +51,9 @@ model Pet {
   location             String
   healthStatus         String
   description          String
-  temperament          String
-  medicalHistory       String
-  adoptionRequirements String
+  temperament          String?
+  medicalHistory       String?
+  adoptionRequirements String?
   createdAt            DateTime          @default(now())
   updatedAt            DateTime          @updatedAt
   adoptionRequests     AdoptionRequest[]

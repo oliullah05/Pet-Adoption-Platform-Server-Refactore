@@ -2393,9 +2393,9 @@ export namespace Prisma {
     location: string
     healthStatus: string
     description: string
-    temperament: string
-    medicalHistory: string
-    adoptionRequirements: string
+    temperament: string | null
+    medicalHistory: string | null
+    adoptionRequirements: string | null
     createdAt: Date
     updatedAt: Date
     _count: PetCountAggregateOutputType | null
@@ -2488,9 +2488,9 @@ export namespace Prisma {
       location: string
       healthStatus: string
       description: string
-      temperament: string
-      medicalHistory: string
-      adoptionRequirements: string
+      temperament: string | null
+      medicalHistory: string | null
+      adoptionRequirements: string | null
       createdAt: Date
       updatedAt: Date
     }, ExtArgs["result"]["pet"]>
@@ -4545,9 +4545,9 @@ export namespace Prisma {
     location?: StringFilter<"Pet"> | string
     healthStatus?: StringFilter<"Pet"> | string
     description?: StringFilter<"Pet"> | string
-    temperament?: StringFilter<"Pet"> | string
-    medicalHistory?: StringFilter<"Pet"> | string
-    adoptionRequirements?: StringFilter<"Pet"> | string
+    temperament?: StringNullableFilter<"Pet"> | string | null
+    medicalHistory?: StringNullableFilter<"Pet"> | string | null
+    adoptionRequirements?: StringNullableFilter<"Pet"> | string | null
     createdAt?: DateTimeFilter<"Pet"> | Date | string
     updatedAt?: DateTimeFilter<"Pet"> | Date | string
     adoptionRequests?: AdoptionRequestListRelationFilter
@@ -4567,9 +4567,9 @@ export namespace Prisma {
     location?: SortOrder
     healthStatus?: SortOrder
     description?: SortOrder
-    temperament?: SortOrder
-    medicalHistory?: SortOrder
-    adoptionRequirements?: SortOrder
+    temperament?: SortOrderInput | SortOrder
+    medicalHistory?: SortOrderInput | SortOrder
+    adoptionRequirements?: SortOrderInput | SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
     adoptionRequests?: AdoptionRequestOrderByRelationAggregateInput
@@ -4592,9 +4592,9 @@ export namespace Prisma {
     location?: StringFilter<"Pet"> | string
     healthStatus?: StringFilter<"Pet"> | string
     description?: StringFilter<"Pet"> | string
-    temperament?: StringFilter<"Pet"> | string
-    medicalHistory?: StringFilter<"Pet"> | string
-    adoptionRequirements?: StringFilter<"Pet"> | string
+    temperament?: StringNullableFilter<"Pet"> | string | null
+    medicalHistory?: StringNullableFilter<"Pet"> | string | null
+    adoptionRequirements?: StringNullableFilter<"Pet"> | string | null
     createdAt?: DateTimeFilter<"Pet"> | Date | string
     updatedAt?: DateTimeFilter<"Pet"> | Date | string
     adoptionRequests?: AdoptionRequestListRelationFilter
@@ -4614,9 +4614,9 @@ export namespace Prisma {
     location?: SortOrder
     healthStatus?: SortOrder
     description?: SortOrder
-    temperament?: SortOrder
-    medicalHistory?: SortOrder
-    adoptionRequirements?: SortOrder
+    temperament?: SortOrderInput | SortOrder
+    medicalHistory?: SortOrderInput | SortOrder
+    adoptionRequirements?: SortOrderInput | SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
     _count?: PetCountOrderByAggregateInput
@@ -4643,9 +4643,9 @@ export namespace Prisma {
     location?: StringWithAggregatesFilter<"Pet"> | string
     healthStatus?: StringWithAggregatesFilter<"Pet"> | string
     description?: StringWithAggregatesFilter<"Pet"> | string
-    temperament?: StringWithAggregatesFilter<"Pet"> | string
-    medicalHistory?: StringWithAggregatesFilter<"Pet"> | string
-    adoptionRequirements?: StringWithAggregatesFilter<"Pet"> | string
+    temperament?: StringNullableWithAggregatesFilter<"Pet"> | string | null
+    medicalHistory?: StringNullableWithAggregatesFilter<"Pet"> | string | null
+    adoptionRequirements?: StringNullableWithAggregatesFilter<"Pet"> | string | null
     createdAt?: DateTimeWithAggregatesFilter<"Pet"> | Date | string
     updatedAt?: DateTimeWithAggregatesFilter<"Pet"> | Date | string
   }
@@ -4828,9 +4828,9 @@ export namespace Prisma {
     location: string
     healthStatus: string
     description: string
-    temperament: string
-    medicalHistory: string
-    adoptionRequirements: string
+    temperament?: string | null
+    medicalHistory?: string | null
+    adoptionRequirements?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
     adoptionRequests?: AdoptionRequestCreateNestedManyWithoutPetInput
@@ -4850,9 +4850,9 @@ export namespace Prisma {
     location: string
     healthStatus: string
     description: string
-    temperament: string
-    medicalHistory: string
-    adoptionRequirements: string
+    temperament?: string | null
+    medicalHistory?: string | null
+    adoptionRequirements?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
     adoptionRequests?: AdoptionRequestUncheckedCreateNestedManyWithoutPetInput
@@ -4872,9 +4872,9 @@ export namespace Prisma {
     location?: StringFieldUpdateOperationsInput | string
     healthStatus?: StringFieldUpdateOperationsInput | string
     description?: StringFieldUpdateOperationsInput | string
-    temperament?: StringFieldUpdateOperationsInput | string
-    medicalHistory?: StringFieldUpdateOperationsInput | string
-    adoptionRequirements?: StringFieldUpdateOperationsInput | string
+    temperament?: NullableStringFieldUpdateOperationsInput | string | null
+    medicalHistory?: NullableStringFieldUpdateOperationsInput | string | null
+    adoptionRequirements?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     adoptionRequests?: AdoptionRequestUpdateManyWithoutPetNestedInput
@@ -4894,9 +4894,9 @@ export namespace Prisma {
     location?: StringFieldUpdateOperationsInput | string
     healthStatus?: StringFieldUpdateOperationsInput | string
     description?: StringFieldUpdateOperationsInput | string
-    temperament?: StringFieldUpdateOperationsInput | string
-    medicalHistory?: StringFieldUpdateOperationsInput | string
-    adoptionRequirements?: StringFieldUpdateOperationsInput | string
+    temperament?: NullableStringFieldUpdateOperationsInput | string | null
+    medicalHistory?: NullableStringFieldUpdateOperationsInput | string | null
+    adoptionRequirements?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     adoptionRequests?: AdoptionRequestUncheckedUpdateManyWithoutPetNestedInput
@@ -4916,9 +4916,9 @@ export namespace Prisma {
     location: string
     healthStatus: string
     description: string
-    temperament: string
-    medicalHistory: string
-    adoptionRequirements: string
+    temperament?: string | null
+    medicalHistory?: string | null
+    adoptionRequirements?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
   }
@@ -4937,9 +4937,9 @@ export namespace Prisma {
     location?: StringFieldUpdateOperationsInput | string
     healthStatus?: StringFieldUpdateOperationsInput | string
     description?: StringFieldUpdateOperationsInput | string
-    temperament?: StringFieldUpdateOperationsInput | string
-    medicalHistory?: StringFieldUpdateOperationsInput | string
-    adoptionRequirements?: StringFieldUpdateOperationsInput | string
+    temperament?: NullableStringFieldUpdateOperationsInput | string | null
+    medicalHistory?: NullableStringFieldUpdateOperationsInput | string | null
+    adoptionRequirements?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
@@ -4958,9 +4958,9 @@ export namespace Prisma {
     location?: StringFieldUpdateOperationsInput | string
     healthStatus?: StringFieldUpdateOperationsInput | string
     description?: StringFieldUpdateOperationsInput | string
-    temperament?: StringFieldUpdateOperationsInput | string
-    medicalHistory?: StringFieldUpdateOperationsInput | string
-    adoptionRequirements?: StringFieldUpdateOperationsInput | string
+    temperament?: NullableStringFieldUpdateOperationsInput | string | null
+    medicalHistory?: NullableStringFieldUpdateOperationsInput | string | null
+    adoptionRequirements?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
@@ -5222,6 +5222,26 @@ export namespace Prisma {
     not?: NestedEnumGenderFilter<$PrismaModel> | $Enums.Gender
   }
 
+  export type StringNullableFilter<$PrismaModel = never> = {
+    equals?: string | StringFieldRefInput<$PrismaModel> | null
+    in?: string[] | ListStringFieldRefInput<$PrismaModel> | null
+    notIn?: string[] | ListStringFieldRefInput<$PrismaModel> | null
+    lt?: string | StringFieldRefInput<$PrismaModel>
+    lte?: string | StringFieldRefInput<$PrismaModel>
+    gt?: string | StringFieldRefInput<$PrismaModel>
+    gte?: string | StringFieldRefInput<$PrismaModel>
+    contains?: string | StringFieldRefInput<$PrismaModel>
+    startsWith?: string | StringFieldRefInput<$PrismaModel>
+    endsWith?: string | StringFieldRefInput<$PrismaModel>
+    mode?: QueryMode
+    not?: NestedStringNullableFilter<$PrismaModel> | string | null
+  }
+
+  export type SortOrderInput = {
+    sort: SortOrder
+    nulls?: NullsOrder
+  }
+
   export type PetCountOrderByAggregateInput = {
     id?: SortOrder
     name?: SortOrder
@@ -5327,14 +5347,7 @@ export namespace Prisma {
     _max?: NestedEnumGenderFilter<$PrismaModel>
   }
 
-  export type EnumadoptionRequestStatusFilter<$PrismaModel = never> = {
-    equals?: $Enums.adoptionRequestStatus | EnumadoptionRequestStatusFieldRefInput<$PrismaModel>
-    in?: $Enums.adoptionRequestStatus[] | ListEnumadoptionRequestStatusFieldRefInput<$PrismaModel>
-    notIn?: $Enums.adoptionRequestStatus[] | ListEnumadoptionRequestStatusFieldRefInput<$PrismaModel>
-    not?: NestedEnumadoptionRequestStatusFilter<$PrismaModel> | $Enums.adoptionRequestStatus
-  }
-
-  export type StringNullableFilter<$PrismaModel = never> = {
+  export type StringNullableWithAggregatesFilter<$PrismaModel = never> = {
     equals?: string | StringFieldRefInput<$PrismaModel> | null
     in?: string[] | ListStringFieldRefInput<$PrismaModel> | null
     notIn?: string[] | ListStringFieldRefInput<$PrismaModel> | null
@@ -5346,7 +5359,17 @@ export namespace Prisma {
     startsWith?: string | StringFieldRefInput<$PrismaModel>
     endsWith?: string | StringFieldRefInput<$PrismaModel>
     mode?: QueryMode
-    not?: NestedStringNullableFilter<$PrismaModel> | string | null
+    not?: NestedStringNullableWithAggregatesFilter<$PrismaModel> | string | null
+    _count?: NestedIntNullableFilter<$PrismaModel>
+    _min?: NestedStringNullableFilter<$PrismaModel>
+    _max?: NestedStringNullableFilter<$PrismaModel>
+  }
+
+  export type EnumadoptionRequestStatusFilter<$PrismaModel = never> = {
+    equals?: $Enums.adoptionRequestStatus | EnumadoptionRequestStatusFieldRefInput<$PrismaModel>
+    in?: $Enums.adoptionRequestStatus[] | ListEnumadoptionRequestStatusFieldRefInput<$PrismaModel>
+    notIn?: $Enums.adoptionRequestStatus[] | ListEnumadoptionRequestStatusFieldRefInput<$PrismaModel>
+    not?: NestedEnumadoptionRequestStatusFilter<$PrismaModel> | $Enums.adoptionRequestStatus
   }
 
   export type UserRelationFilter = {
@@ -5357,11 +5380,6 @@ export namespace Prisma {
   export type PetRelationFilter = {
     is?: PetWhereInput
     isNot?: PetWhereInput
-  }
-
-  export type SortOrderInput = {
-    sort: SortOrder
-    nulls?: NullsOrder
   }
 
   export type AdoptionRequestCountOrderByAggregateInput = {
@@ -5411,24 +5429,6 @@ export namespace Prisma {
     _count?: NestedIntFilter<$PrismaModel>
     _min?: NestedEnumadoptionRequestStatusFilter<$PrismaModel>
     _max?: NestedEnumadoptionRequestStatusFilter<$PrismaModel>
-  }
-
-  export type StringNullableWithAggregatesFilter<$PrismaModel = never> = {
-    equals?: string | StringFieldRefInput<$PrismaModel> | null
-    in?: string[] | ListStringFieldRefInput<$PrismaModel> | null
-    notIn?: string[] | ListStringFieldRefInput<$PrismaModel> | null
-    lt?: string | StringFieldRefInput<$PrismaModel>
-    lte?: string | StringFieldRefInput<$PrismaModel>
-    gt?: string | StringFieldRefInput<$PrismaModel>
-    gte?: string | StringFieldRefInput<$PrismaModel>
-    contains?: string | StringFieldRefInput<$PrismaModel>
-    startsWith?: string | StringFieldRefInput<$PrismaModel>
-    endsWith?: string | StringFieldRefInput<$PrismaModel>
-    mode?: QueryMode
-    not?: NestedStringNullableWithAggregatesFilter<$PrismaModel> | string | null
-    _count?: NestedIntNullableFilter<$PrismaModel>
-    _min?: NestedStringNullableFilter<$PrismaModel>
-    _max?: NestedStringNullableFilter<$PrismaModel>
   }
 
   export type AdoptionRequestCreateNestedManyWithoutUserInput = {
@@ -5528,6 +5528,10 @@ export namespace Prisma {
     set?: $Enums.Gender
   }
 
+  export type NullableStringFieldUpdateOperationsInput = {
+    set?: string | null
+  }
+
   export type AdoptionRequestUpdateManyWithoutPetNestedInput = {
     create?: XOR<AdoptionRequestCreateWithoutPetInput, AdoptionRequestUncheckedCreateWithoutPetInput> | AdoptionRequestCreateWithoutPetInput[] | AdoptionRequestUncheckedCreateWithoutPetInput[]
     connectOrCreate?: AdoptionRequestCreateOrConnectWithoutPetInput | AdoptionRequestCreateOrConnectWithoutPetInput[]
@@ -5570,10 +5574,6 @@ export namespace Prisma {
 
   export type EnumadoptionRequestStatusFieldUpdateOperationsInput = {
     set?: $Enums.adoptionRequestStatus
-  }
-
-  export type NullableStringFieldUpdateOperationsInput = {
-    set?: string | null
   }
 
   export type UserUpdateOneRequiredWithoutAdoptionRequestsNestedInput = {
@@ -5707,6 +5707,20 @@ export namespace Prisma {
     not?: NestedEnumGenderFilter<$PrismaModel> | $Enums.Gender
   }
 
+  export type NestedStringNullableFilter<$PrismaModel = never> = {
+    equals?: string | StringFieldRefInput<$PrismaModel> | null
+    in?: string[] | ListStringFieldRefInput<$PrismaModel> | null
+    notIn?: string[] | ListStringFieldRefInput<$PrismaModel> | null
+    lt?: string | StringFieldRefInput<$PrismaModel>
+    lte?: string | StringFieldRefInput<$PrismaModel>
+    gt?: string | StringFieldRefInput<$PrismaModel>
+    gte?: string | StringFieldRefInput<$PrismaModel>
+    contains?: string | StringFieldRefInput<$PrismaModel>
+    startsWith?: string | StringFieldRefInput<$PrismaModel>
+    endsWith?: string | StringFieldRefInput<$PrismaModel>
+    not?: NestedStringNullableFilter<$PrismaModel> | string | null
+  }
+
   export type NestedIntWithAggregatesFilter<$PrismaModel = never> = {
     equals?: number | IntFieldRefInput<$PrismaModel>
     in?: number[] | ListIntFieldRefInput<$PrismaModel>
@@ -5754,37 +5768,6 @@ export namespace Prisma {
     _max?: NestedEnumGenderFilter<$PrismaModel>
   }
 
-  export type NestedEnumadoptionRequestStatusFilter<$PrismaModel = never> = {
-    equals?: $Enums.adoptionRequestStatus | EnumadoptionRequestStatusFieldRefInput<$PrismaModel>
-    in?: $Enums.adoptionRequestStatus[] | ListEnumadoptionRequestStatusFieldRefInput<$PrismaModel>
-    notIn?: $Enums.adoptionRequestStatus[] | ListEnumadoptionRequestStatusFieldRefInput<$PrismaModel>
-    not?: NestedEnumadoptionRequestStatusFilter<$PrismaModel> | $Enums.adoptionRequestStatus
-  }
-
-  export type NestedStringNullableFilter<$PrismaModel = never> = {
-    equals?: string | StringFieldRefInput<$PrismaModel> | null
-    in?: string[] | ListStringFieldRefInput<$PrismaModel> | null
-    notIn?: string[] | ListStringFieldRefInput<$PrismaModel> | null
-    lt?: string | StringFieldRefInput<$PrismaModel>
-    lte?: string | StringFieldRefInput<$PrismaModel>
-    gt?: string | StringFieldRefInput<$PrismaModel>
-    gte?: string | StringFieldRefInput<$PrismaModel>
-    contains?: string | StringFieldRefInput<$PrismaModel>
-    startsWith?: string | StringFieldRefInput<$PrismaModel>
-    endsWith?: string | StringFieldRefInput<$PrismaModel>
-    not?: NestedStringNullableFilter<$PrismaModel> | string | null
-  }
-
-  export type NestedEnumadoptionRequestStatusWithAggregatesFilter<$PrismaModel = never> = {
-    equals?: $Enums.adoptionRequestStatus | EnumadoptionRequestStatusFieldRefInput<$PrismaModel>
-    in?: $Enums.adoptionRequestStatus[] | ListEnumadoptionRequestStatusFieldRefInput<$PrismaModel>
-    notIn?: $Enums.adoptionRequestStatus[] | ListEnumadoptionRequestStatusFieldRefInput<$PrismaModel>
-    not?: NestedEnumadoptionRequestStatusWithAggregatesFilter<$PrismaModel> | $Enums.adoptionRequestStatus
-    _count?: NestedIntFilter<$PrismaModel>
-    _min?: NestedEnumadoptionRequestStatusFilter<$PrismaModel>
-    _max?: NestedEnumadoptionRequestStatusFilter<$PrismaModel>
-  }
-
   export type NestedStringNullableWithAggregatesFilter<$PrismaModel = never> = {
     equals?: string | StringFieldRefInput<$PrismaModel> | null
     in?: string[] | ListStringFieldRefInput<$PrismaModel> | null
@@ -5811,6 +5794,23 @@ export namespace Prisma {
     gt?: number | IntFieldRefInput<$PrismaModel>
     gte?: number | IntFieldRefInput<$PrismaModel>
     not?: NestedIntNullableFilter<$PrismaModel> | number | null
+  }
+
+  export type NestedEnumadoptionRequestStatusFilter<$PrismaModel = never> = {
+    equals?: $Enums.adoptionRequestStatus | EnumadoptionRequestStatusFieldRefInput<$PrismaModel>
+    in?: $Enums.adoptionRequestStatus[] | ListEnumadoptionRequestStatusFieldRefInput<$PrismaModel>
+    notIn?: $Enums.adoptionRequestStatus[] | ListEnumadoptionRequestStatusFieldRefInput<$PrismaModel>
+    not?: NestedEnumadoptionRequestStatusFilter<$PrismaModel> | $Enums.adoptionRequestStatus
+  }
+
+  export type NestedEnumadoptionRequestStatusWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: $Enums.adoptionRequestStatus | EnumadoptionRequestStatusFieldRefInput<$PrismaModel>
+    in?: $Enums.adoptionRequestStatus[] | ListEnumadoptionRequestStatusFieldRefInput<$PrismaModel>
+    notIn?: $Enums.adoptionRequestStatus[] | ListEnumadoptionRequestStatusFieldRefInput<$PrismaModel>
+    not?: NestedEnumadoptionRequestStatusWithAggregatesFilter<$PrismaModel> | $Enums.adoptionRequestStatus
+    _count?: NestedIntFilter<$PrismaModel>
+    _min?: NestedEnumadoptionRequestStatusFilter<$PrismaModel>
+    _max?: NestedEnumadoptionRequestStatusFilter<$PrismaModel>
   }
 
   export type AdoptionRequestCreateWithoutUserInput = {
@@ -5970,9 +5970,9 @@ export namespace Prisma {
     location: string
     healthStatus: string
     description: string
-    temperament: string
-    medicalHistory: string
-    adoptionRequirements: string
+    temperament?: string | null
+    medicalHistory?: string | null
+    adoptionRequirements?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
   }
@@ -5991,9 +5991,9 @@ export namespace Prisma {
     location: string
     healthStatus: string
     description: string
-    temperament: string
-    medicalHistory: string
-    adoptionRequirements: string
+    temperament?: string | null
+    medicalHistory?: string | null
+    adoptionRequirements?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
   }
@@ -6061,9 +6061,9 @@ export namespace Prisma {
     location?: StringFieldUpdateOperationsInput | string
     healthStatus?: StringFieldUpdateOperationsInput | string
     description?: StringFieldUpdateOperationsInput | string
-    temperament?: StringFieldUpdateOperationsInput | string
-    medicalHistory?: StringFieldUpdateOperationsInput | string
-    adoptionRequirements?: StringFieldUpdateOperationsInput | string
+    temperament?: NullableStringFieldUpdateOperationsInput | string | null
+    medicalHistory?: NullableStringFieldUpdateOperationsInput | string | null
+    adoptionRequirements?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
@@ -6082,9 +6082,9 @@ export namespace Prisma {
     location?: StringFieldUpdateOperationsInput | string
     healthStatus?: StringFieldUpdateOperationsInput | string
     description?: StringFieldUpdateOperationsInput | string
-    temperament?: StringFieldUpdateOperationsInput | string
-    medicalHistory?: StringFieldUpdateOperationsInput | string
-    adoptionRequirements?: StringFieldUpdateOperationsInput | string
+    temperament?: NullableStringFieldUpdateOperationsInput | string | null
+    medicalHistory?: NullableStringFieldUpdateOperationsInput | string | null
+    adoptionRequirements?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
