@@ -76,6 +76,28 @@ return result
 }
 
 
+const myAdoptedPets = async (id: string) => {
+await prisma.user.findUniqueOrThrow({
+    where:{
+        id
+    }
+})
+
+const result = await prisma.adoptionRequest.findMany({
+    where:{
+        userId:id,
+        status:"APPROVED"
+    },
+    include:{
+        pet:true
+    }
+})
+
+return result
+
+}
+
+
 
 
 
@@ -84,5 +106,6 @@ export const AdoptionRequestServices = {
     createAdoptionRequest,
     getAllAdoptionRequests,
     updateAdoptionRequests,
-    myAdoptionRequest
+    myAdoptionRequest,
+    myAdoptedPets
 }

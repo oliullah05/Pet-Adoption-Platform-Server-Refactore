@@ -61,6 +61,17 @@ const myAdoptionRequest = catchAsync(async (req, res) => {
     })
 
 })
+const myAdoptedPets = catchAsync(async (req, res) => {
+    const id = req.user.id;
+    const result = await AdoptionRequestServices.myAdoptedPets(id);
+    sendResponse(res, {
+        success: true,
+        message: "My Adopted pets retrieved successfully",
+        statusCode: httpStatus.OK,
+        data: result
+    })
+
+})
 
 
 
@@ -72,5 +83,6 @@ export const AdoptionRequestControllers = {
     createAdoptionRequest,
     getAllAdoptionRequests,
     updateAdoptionRequests,
-    myAdoptionRequest
+    myAdoptionRequest,
+    myAdoptedPets
 }

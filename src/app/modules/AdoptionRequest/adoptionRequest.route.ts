@@ -30,5 +30,9 @@ router.get("/my",
 auth(),
 AdoptionRequestControllers.myAdoptionRequest
 )
+router.get("/my-adopted-pets",
+auth(),
+AdoptionRequestControllers.myAdoptedPets
+)
 
 export const AdoptionRequestRoutes = router;
