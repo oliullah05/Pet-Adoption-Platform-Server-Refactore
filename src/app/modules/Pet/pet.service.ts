@@ -195,6 +195,7 @@ const getUniqueAges = async()=>{
       });
     
       const ages = uniqueAges.map((group) => group.age);
+      ages.sort((a, b) => a - b);
       return ages;
 }
 
@@ -221,6 +222,30 @@ const getUniqueLocations = async()=>{
 }
 
 
+const getUniqueSpecies = async()=>{
+    const uniqueSpecies = await prisma.pet.groupBy({
+        by: ['species'],
+        _count: {
+          species: true,
+        },
+      });
+      const species = uniqueSpecies.map((group) => group.species);
+      species.sort((a, b) => a.localeCompare(b));
+      return species;
+}
+
+const getUniqueMedicalHistory = async()=>{
+    const uniqueMedicalHistory = await prisma.pet.groupBy({
+        by: ['medicalHistory'],
+        _count: {
+          medicalHistory: true,
+        },
+      });
+      const medicalHistory = uniqueMedicalHistory.map((group) => group.medicalHistory);
+      return medicalHistory;
+}
+
+
 
 
 export const PetServices = {
@@ -232,6 +257,8 @@ export const PetServices = {
     deleteSinglePet,
     getUniqueAges,
     getUniqueBreeds,
-    getUniqueLocations
+    getUniqueLocations,
+    getUniqueSpecies,
+    getUniqueMedicalHistory
 
 }

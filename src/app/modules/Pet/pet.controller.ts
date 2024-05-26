@@ -114,12 +114,38 @@ const getUniqueBreeds = catchAsync(async (req, res) => {
     })
 
 })
+
 const getUniqueLocations = catchAsync(async (req, res) => {
 
     const result = await PetServices.getUniqueLocations();
     sendResponse(res, {
         success: true,
         message: "Pets uniqueLocations  get successfully",
+        statusCode: httpStatus.OK,
+        data: result
+    })
+
+})
+const getUniqueSpecies = catchAsync(async (req, res) => {
+
+    const result = await PetServices.getUniqueSpecies();
+    sendResponse(res, {
+        success: true,
+        message: "Pets uniqueSpecies  get successfully",
+        statusCode: httpStatus.OK,
+        data: result
+    })
+
+})
+
+
+
+const getUniqueMedicalHistory = catchAsync(async (req, res) => {
+
+    const result = await PetServices.getUniqueMedicalHistory();
+    sendResponse(res, {
+        success: true,
+        message: "Pets uniqueMedicalHistory  get successfully",
         statusCode: httpStatus.OK,
         data: result
     })
@@ -141,5 +167,7 @@ export const PetControllers = {
     deleteSinglePet,
     getUniqueAges,
     getUniqueBreeds,
-    getUniqueLocations
+    getUniqueLocations,
+    getUniqueSpecies,
+    getUniqueMedicalHistory
 }

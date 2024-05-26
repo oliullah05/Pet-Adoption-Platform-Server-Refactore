@@ -28,6 +28,8 @@ PetControllers.uploadMultiplePhotos
 router.get("/unique-breeds", PetControllers.getUniqueBreeds);
 router.get("/unique-ages", PetControllers.getUniqueAges);
 router.get("/unique-locations", PetControllers.getUniqueLocations);
+router.get("/unique-species", PetControllers.getUniqueSpecies);
+router.get("/unique-medicalHistories", PetControllers.getUniqueMedicalHistory);
 
 router.get("/", PetControllers.getAllPets);
 router.get("/:id",auth(), PetControllers.getSinglePet);

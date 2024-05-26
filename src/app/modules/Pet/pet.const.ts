@@ -1,4 +1,4 @@
-export const petFilterableFields:string[] = ["species","location","size","specialNeeds","breed","searchTerm","gender"];
+export const petFilterableFields:string[] = ["species","location","size","specialNeeds","breed","searchTerm","gender","medicalHistory"];
 
 export const petSearchableFields = ["location","breed","species"]
 export const petUpdateableFields = [
