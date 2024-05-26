@@ -32,9 +32,9 @@ const createPet = zod_1.z.object({
         location: zod_1.z.string({ required_error: "Location is required" }),
         healthStatus: zod_1.z.string({ required_error: "Health Status is required" }),
         description: zod_1.z.string({ required_error: "Description is required" }),
-        temperament: zod_1.z.string({ required_error: "Temperament is required" }),
-        medicalHistory: zod_1.z.string({ required_error: "Medical History is required" }),
-        adoptionRequirements: zod_1.z.string({ required_error: "Adoption Requirements are required" })
+        temperament: zod_1.z.string().optional(),
+        medicalHistory: zod_1.z.string().optional(),
+        adoptionRequirements: zod_1.z.string().optional()
     })
 });
 const updatePet = zod_1.z.object({

@@ -53,6 +53,16 @@ const getAllPets = (0, catchAsync_1.default)((req, res) => __awaiter(void 0, voi
         data: result.data
     });
 }));
+const getSinglePet = (0, catchAsync_1.default)((req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    const id = req.params.id;
+    const result = yield pet_service_1.PetServices.getSinglePet(id);
+    (0, sendResponse_1.default)(res, {
+        success: true,
+        message: "Pet is retrieved successfully",
+        statusCode: http_status_1.default.OK,
+        data: result
+    });
+}));
 const updateSinglePet = (0, catchAsync_1.default)((req, res) => __awaiter(void 0, void 0, void 0, function* () {
     const id = req.params.id;
     const data = (0, pick_1.default)(req.body, pet_const_1.petUpdateableFields);
@@ -64,9 +74,21 @@ const updateSinglePet = (0, catchAsync_1.default)((req, res) => __awaiter(void 0
         data: result
     });
 }));
+const deleteSinglePet = (0, catchAsync_1.default)((req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    const id = req.params.id;
+    const result = yield pet_service_1.PetServices.deleteSinglePet(id);
+    (0, sendResponse_1.default)(res, {
+        success: true,
+        message: "Pet deleted successfully",
+        statusCode: http_status_1.default.OK,
+        data: result
+    });
+}));
 exports.PetControllers = {
     getAllPets,
+    getSinglePet,
     createPet,
     updateSinglePet,
-    uploadMultiplePhotos
+    uploadMultiplePhotos,
+    deleteSinglePet
 };

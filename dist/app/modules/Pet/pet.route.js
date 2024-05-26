@@ -16,7 +16,9 @@ router.post("/", (0, auth_1.default)("admin"), fileUploader_1.upload.single('fil
     console.log({ file: req.file, body: req.body });
     next();
 }, (0, validateRequest_1.default)(pet_validation_1.PetValidations.createPet), pet_controller_1.PetControllers.createPet);
-router.post("/upload-multiple-photos", fileUploader_1.upload.array("files"), pet_controller_1.PetControllers.uploadMultiplePhotos);
-router.get("/", (0, auth_1.default)(), pet_controller_1.PetControllers.getAllPets);
+router.post("/upload-multiple-photos", (0, auth_1.default)("admin"), fileUploader_1.upload.array("files"), pet_controller_1.PetControllers.uploadMultiplePhotos);
+router.get("/", pet_controller_1.PetControllers.getAllPets);
+router.get("/:id", (0, auth_1.default)(), pet_controller_1.PetControllers.getSinglePet);
 router.put("/:id", (0, auth_1.default)("admin"), (0, validateRequest_1.default)(pet_validation_1.PetValidations.updatePet), pet_controller_1.PetControllers.updateSinglePet);
+router.delete("/:id", (0, auth_1.default)("admin"), pet_controller_1.PetControllers.deleteSinglePet);
 exports.PetRoutes = router;

@@ -17,7 +17,7 @@ const createPet = async (payload: Pet, file: any) => {
         //send image to cloudinary
         const { secure_url } = await sendImageToCloudinary(imageName, path)
         payload.bannerPhoto = secure_url as string
-        console.log({ payload });
+        
     }
     const result = await prisma.pet.create({
         data: payload,
@@ -185,12 +185,53 @@ const deleteSinglePet = async (id: string) => {
 
 
 
+
+const getUniqueAges = async()=>{
+    const uniqueAges = await prisma.pet.groupBy({
+        by: ['age'],
+        _count: {
+          age: true,
+        },
+      });
+    
+      const ages = uniqueAges.map((group) => group.age);
+      return ages;
+}
+
+const getUniqueBreeds = async()=>{
+    const uniqueBreeds = await prisma.pet.groupBy({
+        by: ['breed'],
+        _count: {
+          breed: true,
+        },
+      });
+      const breeds = uniqueBreeds.map((group) => group.breed);
+      return breeds;
+}
+
+const getUniqueLocations = async()=>{
+    const uniqueLocations = await prisma.pet.groupBy({
+        by: ['location'],
+        _count: {
+          location: true,
+        },
+      });
+      const locations = uniqueLocations.map((group) => group.location);
+      return locations;
+}
+
+
+
+
 export const PetServices = {
     getAllPet,
     getSinglePet,
     createPet,
     updateSinglePet,
     uploadMultiplePhotos,
-    deleteSinglePet
+    deleteSinglePet,
+    getUniqueAges,
+    getUniqueBreeds,
+    getUniqueLocations
 
 }

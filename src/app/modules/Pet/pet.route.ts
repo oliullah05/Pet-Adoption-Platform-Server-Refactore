@@ -25,7 +25,9 @@ upload.array("files"),
 PetControllers.uploadMultiplePhotos
 
 )
-
+router.get("/unique-breeds", PetControllers.getUniqueBreeds);
+router.get("/unique-ages", PetControllers.getUniqueAges);
+router.get("/unique-locations", PetControllers.getUniqueLocations);
 
 router.get("/", PetControllers.getAllPets);
 router.get("/:id",auth(), PetControllers.getSinglePet);

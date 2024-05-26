@@ -95,6 +95,8 @@ const getAllUser = (params, options) => __awaiter(void 0, void 0, void 0, functi
             id: true,
             email: true,
             name: true,
+            role: true,
+            status: true,
             createdAt: true,
             updatedAt: true,
         }

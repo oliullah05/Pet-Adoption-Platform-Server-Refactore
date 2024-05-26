@@ -6,6 +6,7 @@
   "scripts": {
     "postinstall": "prisma generate",
     "test": "echo \"Error: no test specified\" && exit 1",
+    "data":"npx prisma studio",
     "start": "node ./dist/server.js",
     "migrate": "npx prisma migrate dev --name init",
     "dev": "ts-node-dev --respawn --transpile-only src/server.ts",

@@ -11,7 +11,7 @@ const validateRequest_1 = __importDefault(require("../../middlewars/validateRequ
 const adoptionRequest_validate_1 = require("./adoptionRequest.validate");
 const router = express_1.default.Router();
 router.post("/", (0, auth_1.default)(), (0, validateRequest_1.default)(adoptionRequest_validate_1.AdoptionRequestValidations.createAdoptionRequest), adoptionRequest_controller_1.AdoptionRequestControllers.createAdoptionRequest);
-router.get("/", (0, auth_1.default)(), adoptionRequest_controller_1.AdoptionRequestControllers.getAllAdoptionRequests);
-router.put("/:id", (0, auth_1.default)(), (0, validateRequest_1.default)(adoptionRequest_validate_1.AdoptionRequestValidations.updateAdoptionRequest), adoptionRequest_controller_1.AdoptionRequestControllers.updateAdoptionRequests);
+router.get("/", (0, auth_1.default)("admin"), adoptionRequest_controller_1.AdoptionRequestControllers.getAllAdoptionRequests);
+router.put("/:id", (0, auth_1.default)("admin"), (0, validateRequest_1.default)(adoptionRequest_validate_1.AdoptionRequestValidations.updateAdoptionRequest), adoptionRequest_controller_1.AdoptionRequestControllers.updateAdoptionRequests);
 router.get("/my", (0, auth_1.default)(), adoptionRequest_controller_1.AdoptionRequestControllers.myAdoptionRequest);
 exports.AdoptionRequestRoutes = router;

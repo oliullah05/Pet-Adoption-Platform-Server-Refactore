@@ -36,7 +36,6 @@ const createPet = (payload, file) => __awaiter(void 0, void 0, void 0, function*
         //send image to cloudinary
         const { secure_url } = yield (0, fileUploader_1.sendImageToCloudinary)(imageName, path);
         payload.bannerPhoto = secure_url;
-        console.log({ payload });
     }
     const result = yield prisma_1.default.pet.create({
         data: payload,
@@ -75,7 +74,6 @@ const uploadMultiplePhotos = (files, id) => __awaiter(void 0, void 0, void 0, fu
     };
 });
 const getAllPet = (params, options, query) => __awaiter(void 0, void 0, void 0, function* () {
-    console.log({ query });
     const { searchTerm } = params, filterData = __rest(params, ["searchTerm"]);
     const { limit, page, sortBy, sortOrder, skip } = paginationHelpers_1.paginationHelper.calculatePagination(options);
     const andConditions = [];
@@ -129,6 +127,14 @@ const getAllPet = (params, options, query) => __awaiter(void 0, void 0, void 0, 
         data: result
     };
 });
+const getSinglePet = (id) => __awaiter(void 0, void 0, void 0, function* () {
+    const result = yield prisma_1.default.pet.findUniqueOrThrow({
+        where: {
+            id
+        }
+    });
+    return result;
+});
 const updateSinglePet = (id, data) => __awaiter(void 0, void 0, void 0, function* () {
     yield prisma_1.default.pet.findUniqueOrThrow({
         where: {
@@ -143,9 +149,24 @@ const updateSinglePet = (id, data) => __awaiter(void 0, void 0, void 0, function
     });
     return result;
 });
+const deleteSinglePet = (id) => __awaiter(void 0, void 0, void 0, function* () {
+    yield prisma_1.default.pet.findUniqueOrThrow({
+        where: {
+            id
+        }
+    });
+    const result = yield prisma_1.default.pet.delete({
+        where: {
+            id
+        },
+    });
+    return result;
+});
 exports.PetServices = {
     getAllPet,
+    getSinglePet,
     createPet,
     updateSinglePet,
-    uploadMultiplePhotos
+    uploadMultiplePhotos,
+    deleteSinglePet
 };
