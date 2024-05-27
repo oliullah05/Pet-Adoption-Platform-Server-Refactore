@@ -13,11 +13,29 @@ auth("admin"),
 upload.single('file'),
 (req: Request, res: Response, next: NextFunction) => {
     req.body = JSON.parse(req.body.data);
-    console.log({file:req.file,body:req.body});
     next();
 },
 validateRequest(PetValidations.createPet),
 PetControllers.createPet);
+
+
+
+router.put("/:id",
+auth("admin"),
+upload.single('file'),
+(req: Request, res: Response, next: NextFunction) => {
+    req.body = JSON.parse(req.body.data);
+    next();
+},
+validateRequest(PetValidations.updatePet),
+PetControllers.updateSinglePet);
+
+
+
+
+
+
+
 
 router.post("/upload-multiple-photos",
 auth("admin"),

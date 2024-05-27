@@ -17,7 +17,7 @@ const createPet = async (payload: Pet, file: any) => {
         //send image to cloudinary
         const { secure_url } = await sendImageToCloudinary(imageName, path)
         payload.bannerPhoto = secure_url as string
-        
+
     }
     const result = await prisma.pet.create({
         data: payload,
@@ -26,42 +26,65 @@ const createPet = async (payload: Pet, file: any) => {
     return result
 }
 
+const updateSinglePet = async (id: string, data: Partial<Pet>,file:any) => {
 
-const uploadMultiplePhotos = async (files:any,id:any) => {
-   
-await prisma.pet.findUniqueOrThrow({
-    where:{
-        id:id.id
+    await prisma.pet.findUniqueOrThrow({
+        where: {
+            id
+        }
+    })
+    if (file) {
+        const path = file?.path
+        const imageName = `${Date.now().toString()} ${data?.name}`
+        //send image to cloudinary
+        const { secure_url } = await sendImageToCloudinary(imageName, path)
+        data.bannerPhoto = secure_url as string
+
     }
-})
+    const result = await prisma.pet.update({
+        where: {
+            id
+        },
+        data: data
+    })
+    return result
+}
+
+const uploadMultiplePhotos = async (files: any, id: any) => {
+
+    await prisma.pet.findUniqueOrThrow({
+        where: {
+            id: id.id
+        }
+    })
 
     if (!files || files.length <= 0) {
-        throw new ApiError(404, "Multiple photos/files not found");
+        throw new ApiError(404, "Multiple photos not found");
     }
-    const multiplePhotos:string[] = [];
+    const multiplePhotos: string[] = [];
 
     // Using for...of loop to ensure await works properly
     for (const file of files) {
         const path = file?.path;
         const imageName = `${Date.now().toString()} ${file.originalname} + ${Math.round(Math.random() * 1e9)}`;
-        
+
         // send image to cloudinary
         const { secure_url } = await sendImageToCloudinary(imageName, path);
-        
+
         multiplePhotos.push(secure_url as string);
     }
 
-    const updatedPet =await prisma.pet.update({
-        where:{
-            id:id.id
+    const updatedPet = await prisma.pet.update({
+        where: {
+            id: id.id
         },
-        data:{
+        data: {
             multiplePhotos
         }
     })
     return {
         multiplePhotos,
-        updatedPet   
+        updatedPet
     };
 };
 
@@ -138,9 +161,9 @@ const getAllPet = async (params: any, options: IPaginationOptions, query: Record
 }
 
 
-const getSinglePet = async(id:string)=>{
+const getSinglePet = async (id: string) => {
     const result = await prisma.pet.findUniqueOrThrow({
-        where:{
+        where: {
             id
         }
     })
@@ -149,22 +172,6 @@ const getSinglePet = async(id:string)=>{
 
 
 
-const updateSinglePet = async (id: string, data: Partial<Pet>) => {
-
-    await prisma.pet.findUniqueOrThrow({
-        where: {
-            id
-        }
-    })
-
-    const result = await prisma.pet.update({
-        where: {
-            id
-        },
-        data: data
-    })
-    return result
-}
 
 const deleteSinglePet = async (id: string) => {
 
@@ -187,63 +194,63 @@ const deleteSinglePet = async (id: string) => {
 
 
 
-const getUniqueAges = async()=>{
+const getUniqueAges = async () => {
     const uniqueAges = await prisma.pet.groupBy({
         by: ['age'],
         _count: {
-          age: true,
+            age: true,
         },
-      });
-    
-      const ages = uniqueAges.map((group) => group.age);
-      ages.sort((a, b) => a - b);
-      return ages;
+    });
+
+    const ages = uniqueAges.map((group) => group.age);
+    ages.sort((a, b) => a - b);
+    return ages;
 }
 
-const getUniqueBreeds = async()=>{
+const getUniqueBreeds = async () => {
     const uniqueBreeds = await prisma.pet.groupBy({
         by: ['breed'],
         _count: {
-          breed: true,
+            breed: true,
         },
-      });
-      const breeds = uniqueBreeds.map((group) => group.breed);
-      return breeds;
+    });
+    const breeds = uniqueBreeds.map((group) => group.breed);
+    return breeds;
 }
 
-const getUniqueLocations = async()=>{
+const getUniqueLocations = async () => {
     const uniqueLocations = await prisma.pet.groupBy({
         by: ['location'],
         _count: {
-          location: true,
+            location: true,
         },
-      });
-      const locations = uniqueLocations.map((group) => group.location);
-      return locations;
+    });
+    const locations = uniqueLocations.map((group) => group.location);
+    return locations;
 }
 
 
-const getUniqueSpecies = async()=>{
+const getUniqueSpecies = async () => {
     const uniqueSpecies = await prisma.pet.groupBy({
         by: ['species'],
         _count: {
-          species: true,
+            species: true,
         },
-      });
-      const species = uniqueSpecies.map((group) => group.species);
-      species.sort((a, b) => a.localeCompare(b));
-      return species;
+    });
+    const species = uniqueSpecies.map((group) => group.species);
+    species.sort((a, b) => a.localeCompare(b));
+    return species;
 }
 
-const getUniqueMedicalHistory = async()=>{
+const getUniqueMedicalHistory = async () => {
     const uniqueMedicalHistory = await prisma.pet.groupBy({
         by: ['medicalHistory'],
         _count: {
-          medicalHistory: true,
+            medicalHistory: true,
         },
-      });
-      const medicalHistory = uniqueMedicalHistory.map((group) => group.medicalHistory);
-      return medicalHistory;
+    });
+    const medicalHistory = uniqueMedicalHistory.map((group) => group.medicalHistory);
+    return medicalHistory;
 }
 
 

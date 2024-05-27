@@ -19,6 +19,21 @@ const createPet = catchAsync(async (req, res) => {
 
 })
 
+const updateSinglePet = catchAsync(async (req, res) => {
+   
+    const id = req.params.id;
+    const data = pick(req.body, petUpdateableFields);
+    const file = req.file
+    const result = await PetServices.updateSinglePet(id, data,file);
+    sendResponse(res, {
+        success: true,
+        message: "Pet profile updated successfully",
+        statusCode: httpStatus.OK,
+        data: result
+    })
+
+})
+
 const uploadMultiplePhotos = catchAsync(async (req, res) => {
     const id = req.body
     const files = req.files
@@ -63,19 +78,8 @@ const getSinglePet = catchAsync(async (req, res) => {
 })
 
 
-const updateSinglePet = catchAsync(async (req, res) => {
 
-    const id = req.params.id;
-    const data = pick(req.body, petUpdateableFields);
-    const result = await PetServices.updateSinglePet(id, data);
-    sendResponse(res, {
-        success: true,
-        message: "Pet profile updated successfully",
-        statusCode: httpStatus.OK,
-        data: result
-    })
 
-})
 const deleteSinglePet = catchAsync(async (req, res) => {
 
     const id = req.params.id;
