@@ -27,10 +27,11 @@ const createPet = async (payload: Pet, file: any) => {
 }
 
 
-const uploadMultiplePhotos = async (files:any,id:string) => {
+const uploadMultiplePhotos = async (files:any,id:any) => {
+   
 await prisma.pet.findUniqueOrThrow({
     where:{
-        id
+        id:id.id
     }
 })
 
@@ -52,7 +53,7 @@ await prisma.pet.findUniqueOrThrow({
 
     const updatedPet =await prisma.pet.update({
         where:{
-            id
+            id:id.id
         },
         data:{
             multiplePhotos

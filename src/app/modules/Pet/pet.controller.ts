@@ -20,7 +20,7 @@ const createPet = catchAsync(async (req, res) => {
 })
 
 const uploadMultiplePhotos = catchAsync(async (req, res) => {
-    const id = req.body.id
+    const id = req.body
     const files = req.files
     const result = await PetServices.uploadMultiplePhotos(files, id);
     sendResponse(res, {

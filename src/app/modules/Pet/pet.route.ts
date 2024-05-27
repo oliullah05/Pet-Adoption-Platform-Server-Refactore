@@ -22,6 +22,11 @@ PetControllers.createPet);
 router.post("/upload-multiple-photos",
 auth("admin"),
 upload.array("files"),
+(req: Request, res: Response, next: NextFunction) => {
+    req.body = JSON.parse(req.body.data);
+    // console.log({file:req.file,body:req.body});
+    next();
+},
 PetControllers.uploadMultiplePhotos
 
 )
