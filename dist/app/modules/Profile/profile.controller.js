@@ -30,7 +30,7 @@ const getMe = (0, catchAsync_1.default)((req, res) => __awaiter(void 0, void 0, 
 }));
 const updateMe = (0, catchAsync_1.default)((req, res) => __awaiter(void 0, void 0, void 0, function* () {
     const id = req.user.id;
-    const data = (0, pick_1.default)(req.body, ["name", "email"]);
+    const data = (0, pick_1.default)(req.body, ["name", "email", "age", "address"]);
     const result = yield profile_service_1.ProfileServices.updateMe(data, id);
     (0, sendResponse_1.default)(res, {
         success: true,

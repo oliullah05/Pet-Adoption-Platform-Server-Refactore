@@ -50,6 +50,7 @@ exports.upload = exports.sendImageToCloudinary = void 0;
 // }
 // ................................................................................................................................................................................................................................
 const cloudinary_1 = require("cloudinary");
+const path_1 = __importDefault(require("path"));
 const fs_1 = __importDefault(require("fs"));
 const multer_1 = __importDefault(require("multer"));
 cloudinary_1.v2.config({
@@ -78,8 +79,11 @@ const sendImageToCloudinary = (imageName, path) => {
 };
 exports.sendImageToCloudinary = sendImageToCloudinary;
 const storage = multer_1.default.diskStorage({
+    // destination: function (req, file, cb) {
+    //   cb(null, process.cwd() + '/uploads/')
+    // },
     destination: function (req, file, cb) {
-        cb(null, process.cwd() + '/uploads/');
+        cb(null, path_1.default.join(process.cwd(), `uploads`));
     },
     filename: function (req, file, cb) {
         const uniqueSuffix = Date.now() + '-' + Math.round(Math.random() * 1e9);

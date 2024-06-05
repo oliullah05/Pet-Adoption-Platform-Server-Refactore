@@ -32,7 +32,11 @@ const createAdoptionRequest = (payload, email) => __awaiter(void 0, void 0, void
     return result;
 });
 const getAllAdoptionRequests = () => __awaiter(void 0, void 0, void 0, function* () {
-    const result = yield prisma_1.default.adoptionRequest.findMany();
+    const result = yield prisma_1.default.adoptionRequest.findMany({
+        include: {
+            pet: true
+        }
+    });
     return result;
 });
 const updateAdoptionRequests = (id, data) => __awaiter(void 0, void 0, void 0, function* () {
@@ -62,9 +66,27 @@ const myAdoptionRequest = (id) => __awaiter(void 0, void 0, void 0, function* ()
     });
     return result;
 });
+const myAdoptedPets = (id) => __awaiter(void 0, void 0, void 0, function* () {
+    yield prisma_1.default.user.findUniqueOrThrow({
+        where: {
+            id
+        }
+    });
+    const result = yield prisma_1.default.adoptionRequest.findMany({
+        where: {
+            userId: id,
+            status: "APPROVED"
+        },
+        include: {
+            pet: true
+        }
+    });
+    return result;
+});
 exports.AdoptionRequestServices = {
     createAdoptionRequest,
     getAllAdoptionRequests,
     updateAdoptionRequests,
-    myAdoptionRequest
+    myAdoptionRequest,
+    myAdoptedPets
 };

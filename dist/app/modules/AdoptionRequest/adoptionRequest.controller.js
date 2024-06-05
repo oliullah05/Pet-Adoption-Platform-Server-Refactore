@@ -60,9 +60,20 @@ const myAdoptionRequest = (0, catchAsync_1.default)((req, res) => __awaiter(void
         data: result
     });
 }));
+const myAdoptedPets = (0, catchAsync_1.default)((req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    const id = req.user.id;
+    const result = yield adoptionRequest_service_1.AdoptionRequestServices.myAdoptedPets(id);
+    (0, sendResponse_1.default)(res, {
+        success: true,
+        message: "My Adopted pets retrieved successfully",
+        statusCode: http_status_1.default.OK,
+        data: result
+    });
+}));
 exports.AdoptionRequestControllers = {
     createAdoptionRequest,
     getAllAdoptionRequests,
     updateAdoptionRequests,
-    myAdoptionRequest
+    myAdoptionRequest,
+    myAdoptedPets
 };

@@ -12,6 +12,8 @@ const getMe = async (id: string) => {
             id: true,
             name: true,
             role:true,
+            age:true,
+            address:true,
             status:true,
             email: true,
             createdAt: true,
@@ -29,7 +31,7 @@ const updateMe = async (payload: {email:string,name:string}, id: string) => {
             id
         }
     })
-
+console.log({payload,id});
     const result = await prisma.user.update({
         where: {
             id
@@ -39,6 +41,8 @@ const updateMe = async (payload: {email:string,name:string}, id: string) => {
             id: true,
             name: true,
             role:true,
+            age:true,
+            address:true,
             status:true,
             email: true,
             createdAt: true,
@@ -68,6 +72,8 @@ const changeUserRole = async (id: string,role:Role) => {
             id: true,
             name: true,
             email: true,
+            age:true,
+            address:true,
             status:true,
             role:true,
             createdAt: true,
@@ -96,6 +102,8 @@ const changeUserStatus= async (id: string,status:Status) => {
             id: true,
             name: true,
             email: true,
+            age:true,
+            address:true,
             status:true,
             role:true,
             createdAt: true,

@@ -2,8 +2,10 @@ import { z } from "zod";
 
 const updateMe = z.object({
     body:z.object({
-        name:z.string().optional(),
-        email:z.string().optional()
+        name:z.string({invalid_type_error:"name must be string"}).optional(),
+        email:z.string({invalid_type_error:"email must be string"}).optional(),
+        age:z.number({invalid_type_error:"age must be number"}).optional(),
+        address:z.string({invalid_type_error:"address must be string"}).optional()
     })
 })
 const changeUserRole = z.object({

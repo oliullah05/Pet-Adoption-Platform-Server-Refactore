@@ -21,7 +21,7 @@ const getMe = catchAsync(async (req, res) => {
 
 const updateMe = catchAsync(async (req, res) => {
     const id = req.user.id;
-    const data = pick(req.body,["name","email"]) as {email:string,name:string}
+    const data = pick(req.body,["name","email","age","address"]) as {email:string,name:string}
     const result = await ProfileServices.updateMe(data,id);
     sendResponse(res, {
         success: true,

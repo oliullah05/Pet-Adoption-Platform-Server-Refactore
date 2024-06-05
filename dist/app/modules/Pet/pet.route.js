@@ -13,10 +13,22 @@ const fileUploader_1 = require("../../helpers/fileUploader");
 const router = express_1.default.Router();
 router.post("/", (0, auth_1.default)("admin"), fileUploader_1.upload.single('file'), (req, res, next) => {
     req.body = JSON.parse(req.body.data);
-    console.log({ file: req.file, body: req.body });
     next();
 }, (0, validateRequest_1.default)(pet_validation_1.PetValidations.createPet), pet_controller_1.PetControllers.createPet);
-router.post("/upload-multiple-photos", (0, auth_1.default)("admin"), fileUploader_1.upload.array("files"), pet_controller_1.PetControllers.uploadMultiplePhotos);
+router.put("/:id", (0, auth_1.default)("admin"), fileUploader_1.upload.single('file'), (req, res, next) => {
+    req.body = JSON.parse(req.body.data);
+    next();
+}, (0, validateRequest_1.default)(pet_validation_1.PetValidations.updatePet), pet_controller_1.PetControllers.updateSinglePet);
+router.post("/upload-multiple-photos", (0, auth_1.default)("admin"), fileUploader_1.upload.array("files"), (req, res, next) => {
+    req.body = JSON.parse(req.body.data);
+    // console.log({file:req.file,body:req.body});
+    next();
+}, pet_controller_1.PetControllers.uploadMultiplePhotos);
+router.get("/unique-breeds", pet_controller_1.PetControllers.getUniqueBreeds);
+router.get("/unique-ages", pet_controller_1.PetControllers.getUniqueAges);
+router.get("/unique-locations", pet_controller_1.PetControllers.getUniqueLocations);
+router.get("/unique-species", pet_controller_1.PetControllers.getUniqueSpecies);
+router.get("/unique-medicalHistories", pet_controller_1.PetControllers.getUniqueMedicalHistory);
 router.get("/", pet_controller_1.PetControllers.getAllPets);
 router.get("/:id", (0, auth_1.default)(), pet_controller_1.PetControllers.getSinglePet);
 router.put("/:id", (0, auth_1.default)("admin"), (0, validateRequest_1.default)(pet_validation_1.PetValidations.updatePet), pet_controller_1.PetControllers.updateSinglePet);

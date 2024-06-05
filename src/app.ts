@@ -7,7 +7,7 @@ import globalErrorHandler from "./app/middlewars/globalErrorHandler";
 const app: Application = express();
 
 // middlewars
-app.use(cors())
+app.use(cors({origin:["http://localhost:3000","https://pet-harmony.vercel.app"]}))
 
 // parser
 app.use(express.json())

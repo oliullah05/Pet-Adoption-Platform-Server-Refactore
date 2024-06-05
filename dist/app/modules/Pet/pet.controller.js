@@ -30,8 +30,20 @@ const createPet = (0, catchAsync_1.default)((req, res) => __awaiter(void 0, void
         data: result
     });
 }));
+const updateSinglePet = (0, catchAsync_1.default)((req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    const id = req.params.id;
+    const data = (0, pick_1.default)(req.body, pet_const_1.petUpdateableFields);
+    const file = req.file;
+    const result = yield pet_service_1.PetServices.updateSinglePet(id, data, file);
+    (0, sendResponse_1.default)(res, {
+        success: true,
+        message: "Pet profile updated successfully",
+        statusCode: http_status_1.default.OK,
+        data: result
+    });
+}));
 const uploadMultiplePhotos = (0, catchAsync_1.default)((req, res) => __awaiter(void 0, void 0, void 0, function* () {
-    const id = req.body.id;
+    const id = req.body;
     const files = req.files;
     const result = yield pet_service_1.PetServices.uploadMultiplePhotos(files, id);
     (0, sendResponse_1.default)(res, {
@@ -63,17 +75,6 @@ const getSinglePet = (0, catchAsync_1.default)((req, res) => __awaiter(void 0, v
         data: result
     });
 }));
-const updateSinglePet = (0, catchAsync_1.default)((req, res) => __awaiter(void 0, void 0, void 0, function* () {
-    const id = req.params.id;
-    const data = (0, pick_1.default)(req.body, pet_const_1.petUpdateableFields);
-    const result = yield pet_service_1.PetServices.updateSinglePet(id, data);
-    (0, sendResponse_1.default)(res, {
-        success: true,
-        message: "Pet profile updated successfully",
-        statusCode: http_status_1.default.OK,
-        data: result
-    });
-}));
 const deleteSinglePet = (0, catchAsync_1.default)((req, res) => __awaiter(void 0, void 0, void 0, function* () {
     const id = req.params.id;
     const result = yield pet_service_1.PetServices.deleteSinglePet(id);
@@ -84,11 +85,61 @@ const deleteSinglePet = (0, catchAsync_1.default)((req, res) => __awaiter(void 0
         data: result
     });
 }));
+const getUniqueAges = (0, catchAsync_1.default)((req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    const result = yield pet_service_1.PetServices.getUniqueAges();
+    (0, sendResponse_1.default)(res, {
+        success: true,
+        message: "Pets uniqueAges  get successfully",
+        statusCode: http_status_1.default.OK,
+        data: result
+    });
+}));
+const getUniqueBreeds = (0, catchAsync_1.default)((req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    const result = yield pet_service_1.PetServices.getUniqueBreeds();
+    (0, sendResponse_1.default)(res, {
+        success: true,
+        message: "Pets uniqueBreeds  get successfully",
+        statusCode: http_status_1.default.OK,
+        data: result
+    });
+}));
+const getUniqueLocations = (0, catchAsync_1.default)((req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    const result = yield pet_service_1.PetServices.getUniqueLocations();
+    (0, sendResponse_1.default)(res, {
+        success: true,
+        message: "Pets uniqueLocations  get successfully",
+        statusCode: http_status_1.default.OK,
+        data: result
+    });
+}));
+const getUniqueSpecies = (0, catchAsync_1.default)((req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    const result = yield pet_service_1.PetServices.getUniqueSpecies();
+    (0, sendResponse_1.default)(res, {
+        success: true,
+        message: "Pets uniqueSpecies  get successfully",
+        statusCode: http_status_1.default.OK,
+        data: result
+    });
+}));
+const getUniqueMedicalHistory = (0, catchAsync_1.default)((req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    const result = yield pet_service_1.PetServices.getUniqueMedicalHistory();
+    (0, sendResponse_1.default)(res, {
+        success: true,
+        message: "Pets uniqueMedicalHistory  get successfully",
+        statusCode: http_status_1.default.OK,
+        data: result
+    });
+}));
 exports.PetControllers = {
     getAllPets,
     getSinglePet,
     createPet,
     updateSinglePet,
     uploadMultiplePhotos,
-    deleteSinglePet
+    deleteSinglePet,
+    getUniqueAges,
+    getUniqueBreeds,
+    getUniqueLocations,
+    getUniqueSpecies,
+    getUniqueMedicalHistory
 };

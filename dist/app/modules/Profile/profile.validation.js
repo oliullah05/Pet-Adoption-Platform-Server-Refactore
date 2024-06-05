@@ -4,8 +4,10 @@ exports.ProfileValidations = void 0;
 const zod_1 = require("zod");
 const updateMe = zod_1.z.object({
     body: zod_1.z.object({
-        name: zod_1.z.string().optional(),
-        email: zod_1.z.string().optional()
+        name: zod_1.z.string({ invalid_type_error: "name must be string" }).optional(),
+        email: zod_1.z.string({ invalid_type_error: "email must be string" }).optional(),
+        age: zod_1.z.number({ invalid_type_error: "age must be number" }).optional(),
+        address: zod_1.z.string({ invalid_type_error: "address must be string" }).optional()
     })
 });
 const changeUserRole = zod_1.z.object({

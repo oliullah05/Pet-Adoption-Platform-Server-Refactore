@@ -42,14 +42,35 @@ const createPet = (payload, file) => __awaiter(void 0, void 0, void 0, function*
     });
     return result;
 });
-const uploadMultiplePhotos = (files, id) => __awaiter(void 0, void 0, void 0, function* () {
+const updateSinglePet = (id, data, file) => __awaiter(void 0, void 0, void 0, function* () {
     yield prisma_1.default.pet.findUniqueOrThrow({
         where: {
             id
         }
     });
+    if (file) {
+        const path = file === null || file === void 0 ? void 0 : file.path;
+        const imageName = `${Date.now().toString()} ${data === null || data === void 0 ? void 0 : data.name}`;
+        //send image to cloudinary
+        const { secure_url } = yield (0, fileUploader_1.sendImageToCloudinary)(imageName, path);
+        data.bannerPhoto = secure_url;
+    }
+    const result = yield prisma_1.default.pet.update({
+        where: {
+            id
+        },
+        data: data
+    });
+    return result;
+});
+const uploadMultiplePhotos = (files, id) => __awaiter(void 0, void 0, void 0, function* () {
+    yield prisma_1.default.pet.findUniqueOrThrow({
+        where: {
+            id: id.id
+        }
+    });
     if (!files || files.length <= 0) {
-        throw new ApiError_1.default(404, "Multiple photos/files not found");
+        throw new ApiError_1.default(404, "Multiple photos not found");
     }
     const multiplePhotos = [];
     // Using for...of loop to ensure await works properly
@@ -62,7 +83,7 @@ const uploadMultiplePhotos = (files, id) => __awaiter(void 0, void 0, void 0, fu
     }
     const updatedPet = yield prisma_1.default.pet.update({
         where: {
-            id
+            id: id.id
         },
         data: {
             multiplePhotos
@@ -135,20 +156,6 @@ const getSinglePet = (id) => __awaiter(void 0, void 0, void 0, function* () {
     });
     return result;
 });
-const updateSinglePet = (id, data) => __awaiter(void 0, void 0, void 0, function* () {
-    yield prisma_1.default.pet.findUniqueOrThrow({
-        where: {
-            id
-        }
-    });
-    const result = yield prisma_1.default.pet.update({
-        where: {
-            id
-        },
-        data: data
-    });
-    return result;
-});
 const deleteSinglePet = (id) => __awaiter(void 0, void 0, void 0, function* () {
     yield prisma_1.default.pet.findUniqueOrThrow({
         where: {
@@ -162,11 +169,68 @@ const deleteSinglePet = (id) => __awaiter(void 0, void 0, void 0, function* () {
     });
     return result;
 });
+const getUniqueAges = () => __awaiter(void 0, void 0, void 0, function* () {
+    const uniqueAges = yield prisma_1.default.pet.groupBy({
+        by: ['age'],
+        _count: {
+            age: true,
+        },
+    });
+    const ages = uniqueAges.map((group) => group.age);
+    ages.sort((a, b) => a - b);
+    return ages;
+});
+const getUniqueBreeds = () => __awaiter(void 0, void 0, void 0, function* () {
+    const uniqueBreeds = yield prisma_1.default.pet.groupBy({
+        by: ['breed'],
+        _count: {
+            breed: true,
+        },
+    });
+    const breeds = uniqueBreeds.map((group) => group.breed);
+    return breeds;
+});
+const getUniqueLocations = () => __awaiter(void 0, void 0, void 0, function* () {
+    const uniqueLocations = yield prisma_1.default.pet.groupBy({
+        by: ['location'],
+        _count: {
+            location: true,
+        },
+    });
+    const locations = uniqueLocations.map((group) => group.location);
+    return locations;
+});
+const getUniqueSpecies = () => __awaiter(void 0, void 0, void 0, function* () {
+    const uniqueSpecies = yield prisma_1.default.pet.groupBy({
+        by: ['species'],
+        _count: {
+            species: true,
+        },
+    });
+    const species = uniqueSpecies.map((group) => group.species);
+    species.sort((a, b) => a.localeCompare(b));
+    return species;
+});
+const getUniqueMedicalHistory = () => __awaiter(void 0, void 0, void 0, function* () {
+    const uniqueMedicalHistory = yield prisma_1.default.pet.groupBy({
+        by: ['medicalHistory'],
+        _count: {
+            medicalHistory: true,
+        },
+    });
+    const medicalHistory = uniqueMedicalHistory.map((group) => group.medicalHistory);
+    return medicalHistory;
+});
 exports.PetServices = {
     getAllPet,
     getSinglePet,
     createPet,
     updateSinglePet,
     uploadMultiplePhotos,
-    deleteSinglePet
+    deleteSinglePet,
+    getUniqueAges,
+    getUniqueBreeds,
+    getUniqueLocations,
+    getUniqueSpecies,
+    getUniqueMedicalHistory
 };

@@ -14,4 +14,5 @@ router.post("/", (0, auth_1.default)(), (0, validateRequest_1.default)(adoptionR
 router.get("/", (0, auth_1.default)("admin"), adoptionRequest_controller_1.AdoptionRequestControllers.getAllAdoptionRequests);
 router.put("/:id", (0, auth_1.default)("admin"), (0, validateRequest_1.default)(adoptionRequest_validate_1.AdoptionRequestValidations.updateAdoptionRequest), adoptionRequest_controller_1.AdoptionRequestControllers.updateAdoptionRequests);
 router.get("/my", (0, auth_1.default)(), adoptionRequest_controller_1.AdoptionRequestControllers.myAdoptionRequest);
+router.get("/my-adopted-pets", (0, auth_1.default)(), adoptionRequest_controller_1.AdoptionRequestControllers.myAdoptedPets);
 exports.AdoptionRequestRoutes = router;
